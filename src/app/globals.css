@@ -1,0 +1,455 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------- */
+/* Brand palette — the 7 roles from the spec. Do not add new hues here;   */
+/* derive states (hover/muted/border) from these via opacity, not new hex.*/
+/* ---------------------------------------------------------------------- */
+:root {
+  --color-primary-dark: #1b262c; /* headings, dark-mode base */
+  --color-deep-ocean: #0f4c75; /* section backgrounds, cards, dividers */
+  --color-cyan: #00d4ff; /* accents only — not primary CTAs */
+  --color-ice: #d6eeff; /* light-mode section backgrounds */
+  --color-white: #ffffff;
+  --color-dark-base: #12181b; /* dark-mode near-black base */
+
+  /* Accent tuned for WCAG AA on white (≥4.5:1 for body/label text). */
+  --tech-blue: #2878a8;
+
+  /* Semantic, theme-aware layer — components consume these, never raw hex. */
+  --bg-base: var(--color-white);
+  --bg-surface: var(--color-ice);
+  --ink: var(--color-primary-dark);
+  --ink-muted: rgba(27, 38, 44, 0.72);
+  --line: rgba(27, 38, 44, 0.14);
+  /* Primary CTA — deep ocean + white label */
+  --cta: var(--color-deep-ocean);
+  --cta-hover: var(--tech-blue);
+  --cta-ink: var(--color-white);
+
+  /* Cursor — ink + tech-blue (never CTA cyan). */
+  --cursor-core: var(--ink);
+  --cursor-ring: var(--tech-blue);
+  --cursor-hover: var(--color-deep-ocean);
+}
+
+:root[data-theme="dark"] {
+  --bg-base: var(--color-dark-base);
+  --bg-surface: var(--color-primary-dark);
+  --ink: var(--color-white);
+  --ink-muted: rgba(255, 255, 255, 0.78);
+  --line: rgba(255, 255, 255, 0.16);
+  /* Lighter accent for AA contrast on near-black surfaces. */
+  --tech-blue: #7eb8d9;
+  --cta: #1a6fa3;
+  --cta-hover: #3282b8;
+  --cta-ink: var(--color-white);
+
+  --cursor-core: var(--ink);
+  --cursor-ring: var(--tech-blue);
+  --cursor-hover: var(--color-ice);
+}
+
+@theme {
+  /* Breakpoints: spec wants 480/768/1024/1280 — md/lg/xl already match Tailwind defaults. */
+  --breakpoint-sm: 30rem; /* 480px */
+
+  /* Raw brand colors, exposed as utilities (bg-primary-dark, text-tech-blue, ...) */
+  --color-primary-dark: #1b262c;
+  --color-deep-ocean: #0f4c75;
+  --color-cyan: #00d4ff;
+  --color-ice: #d6eeff;
+  --color-dark-base: #12181b;
+
+  /* 4px-max radius system sitewide (circular badge uses --radius-full explicitly). */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --radius-3xl: 4px;
+
+  /* Type scale: 12/14/16/20/28/40/56 */
+  --text-label: 0.75rem; /* 12px */
+  --text-label--line-height: 1.4;
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-sm--line-height: 1.5;
+  --text-body: 1rem; /* 16px */
+  --text-body--line-height: 1.6;
+  --text-body-lg: 1.25rem; /* 20px */
+  --text-body-lg--line-height: 1.5;
+  --text-heading-sm: 1.75rem; /* 28px */
+  --text-heading-sm--line-height: 1.25;
+  --text-heading-lg: 2.5rem; /* 40px */
+  --text-heading-lg--line-height: 1.15;
+  --text-display: 3.5rem; /* 56px */
+  --text-display--line-height: 1.05;
+
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-base: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-cta-ink: var(--cta-ink);
+  --color-tech-blue: var(--tech-blue);
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Theme cursor fallback — ink + tech-blue (reduced-motion / pre-JS). */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='8.25' stroke='%233282B8' stroke-width='1'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%231B262C'/%3E%3C/svg%3E")
+        12 12,
+      auto;
+  }
+
+  html[data-theme="dark"] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='8.25' stroke='%233282B8' stroke-width='1'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%23D6EEFF'/%3E%3C/svg%3E")
+        12 12,
+      auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  label[for],
+  summary,
+  .cursor-pointer {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='10.5' stroke='%230F4C75' stroke-width='1'/%3E%3Ccircle cx='14' cy='14' r='1.75' fill='%233282B8'/%3E%3C/svg%3E")
+        14 14,
+      pointer;
+  }
+
+  html[data-theme="dark"] a,
+  html[data-theme="dark"] button,
+  html[data-theme="dark"] [role="button"],
+  html[data-theme="dark"] label[for],
+  html[data-theme="dark"] summary,
+  html[data-theme="dark"] .cursor-pointer {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='10.5' stroke='%23D6EEFF' stroke-width='1'/%3E%3Ccircle cx='14' cy='14' r='1.75' fill='%233282B8'/%3E%3C/svg%3E")
+        14 14,
+      pointer;
+  }
+
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  html.has-custom-cursor
+    :is(
+      input:not([type="button"]):not([type="submit"]):not([type="reset"]):not(
+          [type="checkbox"]
+        ):not([type="radio"]),
+      textarea,
+      select,
+      [contenteditable="true"]
+    ) {
+    cursor: text !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.custom-cursor[data-visible="true"] {
+  opacity: 1;
+}
+
+.custom-cursor-core,
+.custom-cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.custom-cursor-core {
+  width: 5px;
+  height: 5px;
+  background: var(--cursor-core);
+  transition:
+    width 140ms ease,
+    height 140ms ease,
+    background-color 140ms ease;
+}
+
+.custom-cursor-ring {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--cursor-ring);
+  background: transparent;
+  transition:
+    width 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 140ms ease;
+}
+
+.custom-cursor[data-mode="pointer"] .custom-cursor-core {
+  width: 4px;
+  height: 4px;
+  background: var(--cursor-ring);
+}
+
+.custom-cursor[data-mode="pointer"] .custom-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-color: var(--cursor-hover);
+}
+
+html.is-cursor-down .custom-cursor-core {
+  width: 3px;
+  height: 3px;
+}
+
+html.is-cursor-down .custom-cursor-ring {
+  width: 18px;
+  height: 18px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--tech-blue);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar — tech-blue track / charcoal thumb (light), inverted (dark). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-dark) var(--tech-blue);
+}
+:root[data-theme="dark"] * {
+  scrollbar-color: var(--color-ice) var(--tech-blue);
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--tech-blue);
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-primary-dark);
+}
+:root[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background: var(--color-ice);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hero right signal — circular mark + few tech logos on the orbit. */
+.hero-signal {
+  container-type: inline-size;
+}
+
+.hero-signal-ring {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--tech-blue) 35%, transparent);
+  pointer-events: none;
+}
+.hero-signal-ring-mid {
+  inset: 16%;
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--tech-blue) 45%, transparent);
+  animation: hero-signal-spin 40s linear infinite;
+}
+
+.hero-signal-sweep {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in srgb, var(--tech-blue) 55%, transparent) 28deg,
+    transparent 56deg,
+    transparent 360deg
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  animation: hero-signal-spin 18s linear infinite;
+}
+
+.hero-signal-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.hero-signal-orbit-mid {
+  animation: hero-signal-spin 40s linear infinite;
+}
+
+.hero-signal-orbit-outer {
+  /* Slightly slower, opposite direction from the mid orbit */
+  animation: hero-signal-spin-reverse 55s linear infinite;
+}
+
+.hero-signal-orbit-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -1.25rem;
+}
+
+.hero-signal-orbit-mid .hero-signal-orbit-item {
+  transform: rotate(var(--orbit-angle)) translateY(-9.5rem)
+    rotate(calc(-1 * var(--orbit-angle)));
+}
+
+.hero-signal-orbit-outer .hero-signal-orbit-item {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: -1.125rem;
+  transform: rotate(var(--orbit-angle)) translateY(-12rem)
+    rotate(calc(-1 * var(--orbit-angle)));
+}
+
+@supports (width: 1cqi) {
+  .hero-signal-orbit-mid .hero-signal-orbit-item {
+    /* Mid-ring radius ≈ 50% - 16% inset */
+    transform: rotate(var(--orbit-angle)) translateY(-34cqi)
+      rotate(calc(-1 * var(--orbit-angle)));
+  }
+
+  .hero-signal-orbit-outer .hero-signal-orbit-item {
+    /* Outer-ring radius ≈ 50% - 6% inset */
+    transform: rotate(var(--orbit-angle)) translateY(-44cqi)
+      rotate(calc(-1 * var(--orbit-angle)));
+  }
+}
+
+.hero-signal-orbit-chip {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-base);
+  color: var(--tech-blue);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+/* Keep icons upright while each orbit rotates */
+.hero-signal-orbit-mid .hero-signal-orbit-chip {
+  animation: hero-signal-spin-reverse 40s linear infinite;
+}
+
+.hero-signal-orbit-outer .hero-signal-orbit-chip {
+  animation: hero-signal-spin 55s linear infinite;
+}
+
+.hero-signal-core {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--tech-blue) 28%, transparent);
+}
+
+.hero-signal-logo {
+  background: transparent;
+}
+
+@keyframes hero-signal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-signal-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 32s linear infinite;
+}
+.animate-marquee:hover,
+.animate-marquee.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes cross-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

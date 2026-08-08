@@ -1,0 +1,838 @@
+{
+  "meta": {
+    "home": {
+      "title": "VousTech | Website & Software Development Company for Africa & Beyond",
+      "description": "VousTech designs and builds websites, mobile apps and custom software for businesses, NGOs and institutions across Africa and internationally, with deep expertise in DR Congo. Request a free consultation today.",
+      "ogTitle": "VousTech: Technology That Moves Your Business Forward",
+      "ogDescription": "Websites, apps and digital systems built for businesses across Africa and internationally. See how VousTech can help you grow.",
+      "twitterTitle": "VousTech | Digital & Technology Solutions",
+      "twitterDescription": "We design and build secure, modern digital products for businesses, NGOs and institutions worldwide."
+    },
+    "about": {
+      "title": "About VousTech | Our Mission, Vision & Team",
+      "description": "Learn how VousTech combines international best practices with genuine local market understanding to build technology for businesses across Africa and beyond."
+    },
+    "services": {
+      "title": "Our Services | Websites, Apps, Cloud & AI Solutions",
+      "description": "Explore VousTech's full range of services (from websites and mobile apps to ERP, cloud infrastructure and AI integration) built for real business results."
+    },
+    "portfolio": {
+      "title": "Our Work | VousTech Portfolio",
+      "description": "See the websites, applications and digital platforms VousTech has designed and built for clients across industries in Africa and beyond."
+    },
+    "blog": {
+      "title": "Blog | Technology Insights From VousTech",
+      "description": "Practical guides and insights on websites, software, security and digital growth from the VousTech team."
+    },
+    "contact": {
+      "title": "Contact VousTech | Request a Free Consultation",
+      "description": "Tell VousTech about your project. Our team responds within one business day with clear next steps for your website, app or software build."
+    },
+    "careers": {
+      "title": "Careers at VousTech",
+      "description": "Join VousTech's team of developers, designers and strategists building technology for businesses across Africa and beyond."
+    },
+    "privacy": {
+      "title": "Privacy Policy | VousTech",
+      "description": "How VousTech collects, uses and protects your personal information."
+    },
+    "terms": {
+      "title": "Terms of Service | VousTech",
+      "description": "The terms that govern your use of the VousTech website and services."
+    },
+    "cookies": {
+      "title": "Cookie Policy | VousTech",
+      "description": "How VousTech uses cookies and similar technologies on this website."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cta": "Request a Free Consultation",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "primaryNav": "Primary",
+    "mobileNav": "Mobile",
+    "toggleTheme": "Toggle light and dark theme",
+    "language": "Language",
+    "servicesMenu": "Browse services by domain",
+    "servicesMenuHint": "Organized by domain, pick a specialty or explore the full catalog."
+  },
+  "hero": {
+    "title": "We Build the Technology That Moves Your Business Forward.",
+    "subhead": "Websites, applications and digital systems designed for businesses, institutions and entrepreneurs, with clients across Africa and around the world.",
+    "body": "Secure, modern digital solutions from websites to enterprise software, delivered with international standards and genuine local understanding.",
+    "ctaPrimary": "Start Your Project",
+    "ctaSecondary": "See Our Work"
+  },
+  "trustedBy": {
+    "label": "Trusted by businesses and institutions across Africa and beyond."
+  },
+  "about": {
+    "label": "About VousTech",
+    "heading": "Technology Built for Real Businesses, Real Markets.",
+    "body": "VousTech is a technology company dedicated to helping businesses, institutions and entrepreneurs harness the power of modern digital tools, serving clients across Africa and internationally, with deep roots in the Democratic Republic of Congo. From custom websites and mobile applications to enterprise software and cloud infrastructure, we design solutions that are secure, scalable and built to perform in real market conditions.",
+    "pillarsLabel": "Who We Are",
+    "mission": {
+      "title": "Our Mission",
+      "body": "To make world-class technology accessible, affordable and locally supported for every organization we serve."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "body": "A digitally empowered Africa, where every business (regardless of size or location) has the tools to compete and thrive online."
+    },
+    "whyExist": {
+      "title": "Why We Exist",
+      "body": "Too many organizations are underserved by technology partners, left with unfinished websites, unreliable systems, or solutions built without local context. VousTech exists to close that gap: combining international best practices with genuine understanding of the markets we serve, wherever our clients are based, in whatever language they work in."
+    },
+    "learnMore": "Learn More About Us"
+  },
+  "services": {
+    "label": "What We Do",
+    "heading": "End-to-End Digital Solutions, Under One Roof.",
+    "viewAll": "View All Services",
+    "intro": "Twenty-seven services across four domains. Pick a specialty on the left, then browse that domain’s offerings.",
+    "domainsLabel": "Domains",
+    "domainCount": "{count} services",
+    "categories": {
+      "webApps": "Web & Apps",
+      "designBranding": "Design & Branding",
+      "businessSystems": "Business Systems",
+      "infrastructureGrowth": "Infrastructure & Growth"
+    },
+    "items": {
+      "website-development": {
+        "title": "Website Development",
+        "hook": "Professional, responsive websites that represent your brand with credibility.",
+        "body": "We design and build fast, mobile-friendly websites (from simple showcase sites to complex corporate platforms) optimized for real-world connectivity conditions.",
+        "cta": "Request Your Website"
+      },
+      "custom-web-applications": {
+        "title": "Custom Web Applications",
+        "hook": "Tailor-made web platforms built around your exact business workflow.",
+        "body": "From internal dashboards to client portals, we build custom web applications that automate processes unique to your organization, not generic templates.",
+        "cta": "Discuss Your Application"
+      },
+      "mobile-app-development": {
+        "title": "Mobile Application Development",
+        "hook": "Native and cross-platform apps for Android and iOS that engage your users.",
+        "body": "Optimized for real-world usage conditions, offline-friendly, lightweight and intuitive, even for first-time smartphone users.",
+        "cta": "Build My App"
+      },
+      "ui-ux-design": {
+        "title": "UI/UX Design",
+        "hook": "Interfaces that are beautiful, intuitive and built to convert visitors into clients.",
+        "body": "Grounded in real user research, balancing global design standards with local usability expectations.",
+        "cta": "Get a Design Consultation"
+      },
+      "website-maintenance": {
+        "title": "Website Maintenance",
+        "hook": "Ongoing updates, monitoring and support to keep your site fast and secure.",
+        "body": "Proactive plans (updates, backups, uptime monitoring, technical support) so your website never becomes a liability.",
+        "cta": "Protect My Website"
+      },
+      "seo-optimization": {
+        "title": "SEO Optimization",
+        "hook": "Get found on Google by the clients who are already searching for you.",
+        "body": "We optimize structure, content and technical performance so you rank higher, locally and internationally.",
+        "cta": "Improve My Ranking"
+      },
+      "brand-identity": {
+        "title": "Brand Identity",
+        "hook": "A cohesive visual and verbal identity that makes your organization memorable.",
+        "body": "Positioning, voice, color system and visual guidelines across every touchpoint.",
+        "cta": "Build My Brand"
+      },
+      "logo-design": {
+        "title": "Logo Design",
+        "hook": "A distinctive, professional logo that represents your brand at a glance.",
+        "body": "Original, versatile logos with full file packages for web, print, signage, social.",
+        "cta": "Design My Logo"
+      },
+      "graphic-design": {
+        "title": "Graphic Design",
+        "hook": "Professional visuals for marketing, print and digital communication.",
+        "body": "Brochures, banners, social creatives, polished, on-brand assets.",
+        "cta": "Request Design Support"
+      },
+      "social-media-management": {
+        "title": "Social Media Management",
+        "hook": "Consistent, engaging content that grows your online community.",
+        "body": "Content calendars across Facebook, Instagram, LinkedIn and WhatsApp Business.",
+        "cta": "Grow My Social Presence"
+      },
+      "ecommerce-development": {
+        "title": "E-commerce Development",
+        "hook": "Online stores built to sell, locally and internationally.",
+        "body": "Secure stores with flexible payment integration, inventory management, mobile-optimized checkout.",
+        "cta": "Launch My Online Store"
+      },
+      "erp-solutions": {
+        "title": "ERP Solutions",
+        "hook": "Unified systems that connect finance, inventory, HR and operations.",
+        "body": "Real-time visibility across departments, less manual work, fewer costly errors.",
+        "cta": "Explore ERP for My Business"
+      },
+      "crm-development": {
+        "title": "CRM Development",
+        "hook": "Never lose track of a lead, client or opportunity again.",
+        "body": "Custom CRM tracking client relationships, pipelines and follow-ups, tailored to your sales process.",
+        "cta": "Organize My Sales"
+      },
+      "business-automation": {
+        "title": "Business Automation",
+        "hook": "Eliminate repetitive manual tasks and free your team's time.",
+        "body": "Automating invoicing, reporting, approvals via custom scripts and integrations.",
+        "cta": "Automate My Business"
+      },
+      "cloud-solutions": {
+        "title": "Cloud Solutions",
+        "hook": "Secure, scalable infrastructure, no physical servers required.",
+        "body": "Migration and design for reliability, remote access, automatic scaling.",
+        "cta": "Move to the Cloud"
+      },
+      "hosting": {
+        "title": "Hosting",
+        "hook": "Fast, reliable hosting with local and international server options.",
+        "body": "Managed for speed and uptime, matched to traffic needs and audience location.",
+        "cta": "Get Reliable Hosting"
+      },
+      "domain-registration": {
+        "title": "Domain Registration",
+        "hook": "Secure your business name online before someone else does.",
+        "body": "Selection, registration and management of domains and business email.",
+        "cta": "Secure My Domain"
+      },
+      "api-integration": {
+        "title": "API Integration",
+        "hook": "Connect your systems, tools and partners into one seamless workflow.",
+        "body": "Integrating third-party services and internal systems, from mobile payments to logistics.",
+        "cta": "Connect My Systems"
+      },
+      "payment-gateway-integration": {
+        "title": "Payment Gateway Integration",
+        "hook": "Accept mobile money, card and bank payments directly on your platform.",
+        "body": "Trusted local and international gateways, secure transaction handling.",
+        "cta": "Accept Payments Online"
+      },
+      "digital-marketing": {
+        "title": "Digital Marketing",
+        "hook": "Reach the right audience with campaigns that generate real leads.",
+        "body": "Search, social and email campaigns designed around measurable outcomes.",
+        "cta": "Launch a Campaign"
+      },
+      "technical-consulting": {
+        "title": "Technical Consulting",
+        "hook": "Expert, unbiased guidance before you invest in technology.",
+        "body": "Assessing current systems and goals, recommending the right roadmap.",
+        "cta": "Book a Consultation"
+      },
+      "software-support": {
+        "title": "Software Support",
+        "hook": "Responsive help when something breaks, no long waits.",
+        "body": "Bug fixes, questions answered, existing software kept running smoothly.",
+        "cta": "Get Support Now"
+      },
+      "cyber-security": {
+        "title": "Cyber Security",
+        "hook": "Protect your data, clients and reputation from digital threats.",
+        "body": "Auditing, securing and monitoring websites, apps and networks.",
+        "cta": "Secure My Systems"
+      },
+      "performance-optimization": {
+        "title": "Performance Optimization",
+        "hook": "Faster load times mean more conversions and happier users.",
+        "body": "Auditing and optimizing speed, code efficiency, infrastructure, critical for limited-bandwidth users.",
+        "cta": "Speed Up My Platform"
+      },
+      "data-analytics": {
+        "title": "Data Analytics",
+        "hook": "Turn your business data into clear, actionable decisions.",
+        "body": "Dashboards and reporting systems turning scattered data into insight.",
+        "cta": "Unlock My Data"
+      },
+      "ai-integration": {
+        "title": "AI Integration",
+        "hook": "Practical artificial intelligence that saves time and improves service.",
+        "body": "Chatbots, automation, predictive insights, focused on real business value over hype.",
+        "cta": "Explore AI for My Business"
+      },
+      "custom-software-development": {
+        "title": "Custom Software Development",
+        "hook": "When off-the-shelf software isn't enough, we build exactly what you need.",
+        "body": "Fully custom software, owned entirely by the client.",
+        "cta": "Start a Custom Build"
+      }
+    }
+  },
+  "whyChoose": {
+    "label": "Why Choose VousTech",
+    "heading": "The Partner That Always Delivers.",
+    "aside": "Ten reasons teams across Africa and beyond trust VousTech with their digital systems.",
+    "items": [
+      {
+        "title": "Experienced, Multidisciplinary Team",
+        "body": "Developers, designers and strategists combining international training with deep regional market knowledge."
+      },
+      {
+        "title": "Modern, Future-Proof Technology",
+        "body": "Built with current, well-supported frameworks, not outdated tools that become a liability."
+      },
+      {
+        "title": "Dedicated After-Launch Support",
+        "body": "We remain a partner after go-live, not a vendor who disappears once paid."
+      },
+      {
+        "title": "Security-First Development",
+        "body": "Every build follows security best practices to protect your data and your clients'."
+      },
+      {
+        "title": "Deep Market Expertise",
+        "body": "Designed with genuine understanding of connectivity, payment habits and business realities."
+      },
+      {
+        "title": "Transparent, Fair Pricing",
+        "body": "Clear quotes, no hidden fees, structured to fit real client budgets."
+      },
+      {
+        "title": "Fast, Reliable Delivery",
+        "body": "Structured project management keeps timelines realistic and predictable."
+      },
+      {
+        "title": "Solutions That Scale With You",
+        "body": "Architecture designed to grow from first users to thousandth."
+      },
+      {
+        "title": "Flexible Engagement Models",
+        "body": "Project-based, retainer or dedicated-team, matched to how you work."
+      },
+      {
+        "title": "Clear, Responsive Communication",
+        "body": "Every client served with clarity and consistency, no communication gaps."
+      }
+    ]
+  },
+  "technologies": {
+    "label": "Built With Modern, Reliable Technology",
+    "heading": "A Stack Chosen for Speed, Security and Longevity.",
+    "aside": "Browse by layer, the tools we use to design, build and run production systems.",
+    "categoriesLabel": "Stack",
+    "stackCount": "{count} tools",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "database": "Database",
+      "cloud": "Cloud",
+      "devops": "DevOps",
+      "ui": "UI Frameworks",
+      "cms": "CMS",
+      "ecommerce": "E-commerce",
+      "ai": "AI"
+    }
+  },
+  "industries": {
+    "label": "Industries We Serve",
+    "heading": "Whatever Sector You Operate In, VousTech Speaks Your Language.",
+    "aside": "From clinics to mines to ministries, digital systems shaped for how each sector actually works.",
+    "items": [
+      "Healthcare",
+      "Education",
+      "Retail",
+      "Restaurants",
+      "Real Estate",
+      "Construction",
+      "Finance",
+      "Manufacturing",
+      "Logistics",
+      "NGOs",
+      "Government",
+      "Travel",
+      "Hospitality",
+      "Agriculture",
+      "Mining",
+      "Telecommunications"
+    ]
+  },
+  "process": {
+    "label": "How We Work",
+    "heading": "A Clear, Proven Process From Idea to Launch.",
+    "aside": "Seven stages (from first conversation to long-term care) so every build stays on track.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery",
+        "body": "We listen first, understanding your goals, users, constraints and success metrics before proposing any solution."
+      },
+      {
+        "number": "02",
+        "title": "Planning",
+        "body": "We define scope, timeline, budget and technical architecture in a clear, written project plan."
+      },
+      {
+        "number": "03",
+        "title": "UI/UX Design",
+        "body": "We design wireframes and visual prototypes, validated with you before development begins."
+      },
+      {
+        "number": "04",
+        "title": "Development",
+        "body": "Our engineers build the product in structured sprints, with regular progress check-ins."
+      },
+      {
+        "number": "05",
+        "title": "Testing",
+        "body": "Rigorous quality assurance across devices, browsers and real-world usage scenarios."
+      },
+      {
+        "number": "06",
+        "title": "Deployment",
+        "body": "We launch your product securely, with monitoring in place from day one."
+      },
+      {
+        "number": "07",
+        "title": "Maintenance",
+        "body": "Ongoing support, updates and optimization to keep your platform performing long-term."
+      }
+    ]
+  },
+  "portfolio": {
+    "label": "Our Work",
+    "heading": "Selected work that moved the needle.",
+    "body": "A selection of the websites, applications and platforms we've built for clients across industries.",
+    "filters": {
+      "all": "All",
+      "websites": "Websites",
+      "webApps": "Web Applications",
+      "mobileApps": "Mobile Apps",
+      "ecommerce": "E-commerce",
+      "branding": "Branding",
+      "enterprise": "Enterprise Systems"
+    },
+    "viewFull": "View Full Portfolio",
+    "filtersLabel": "Filter portfolio",
+    "noResults": "No projects match this filter yet, try another category.",
+    "placeholderNote": "Sample project card, this slot is CMS-ready for your real case studies.",
+    "items": [
+      {
+        "title": "Corporate Showcase Website",
+        "category": "websites",
+        "summary": "A fast, responsive showcase site built to establish credibility for a growing services firm."
+      },
+      {
+        "title": "Client Portal Web Application",
+        "category": "webApps",
+        "summary": "A custom dashboard giving clients real-time visibility into their accounts and requests."
+      },
+      {
+        "title": "Field Operations Mobile App",
+        "category": "mobileApps",
+        "summary": "An offline-friendly Android app helping field teams log visits without a reliable connection."
+      },
+      {
+        "title": "Mobile-Money Ready Online Store",
+        "category": "ecommerce",
+        "summary": "An e-commerce build with local mobile-money checkout alongside card payments."
+      },
+      {
+        "title": "Brand Identity & Logo System",
+        "category": "branding",
+        "summary": "A full visual identity (logo, color system and guidelines) for a regional NGO."
+      },
+      {
+        "title": "Multi-Branch ERP Rollout",
+        "category": "enterprise",
+        "summary": "A unified ERP connecting finance and inventory across multiple branch locations."
+      }
+    ]
+  },
+  "testimonials": {
+    "label": "What Our Clients Say",
+    "items": [
+      {
+        "quote": "VousTech redesigned our company website and, for the first time, we started receiving serious inquiries directly from the site. They understood our market from day one.",
+        "name": "Jean-Marc Ilunga",
+        "role": "Director, Ilunga Trading Group"
+      },
+      {
+        "quote": "Our old donor database was a spreadsheet. VousTech built us a proper system to track programs and donors, and trained our whole team to use it with confidence.",
+        "name": "Patrick Kabeya",
+        "role": "Executive Director, Espoir Congo Foundation"
+      },
+      {
+        "quote": "As a startup, we needed a technical partner who could move fast without cutting corners. VousTech built our MVP in weeks and it hasn't crashed once since launch.",
+        "name": "Grace Mbayo",
+        "role": "Founder, PayEzi"
+      },
+      {
+        "quote": "The online store VousTech built lets us take mobile payments directly, which changed how customers shop with us. Support has been responsive every time we've needed it.",
+        "name": "Aline Ngoyi",
+        "role": "Operations Manager, Marche Frais"
+      }
+    ]
+  },
+  "stats": {
+    "items": {
+      "projects": "Projects Delivered",
+      "experience": "Years of Experience",
+      "happyClients": "Happy Clients",
+      "countries": "Countries Served",
+      "support": "Support Availability"
+    }
+  },
+  "faq": {
+    "label": "Frequently Asked Questions",
+    "heading": "Clear Answers Before You Commit.",
+    "aside": "Timelines, pricing, ownership, support, the questions clients ask most before kicking off.",
+    "cta": "Still Have a Question? Contact Us",
+    "items": [
+      {
+        "question": "How long does it take to build a website?",
+        "answer": "A standard business website typically takes 2-4 weeks; custom platforms and applications take longer depending on complexity."
+      },
+      {
+        "question": "How much does a website cost?",
+        "answer": "Pricing depends on scope and features. We provide a clear, written quote after understanding your needs, with no hidden fees."
+      },
+      {
+        "question": "Do you offer payment plans?",
+        "answer": "Yes. Most projects are split into milestone-based payments (e.g. deposit, midpoint, delivery) to ease cash flow."
+      },
+      {
+        "question": "Can you work with clients outside your home region?",
+        "answer": "Absolutely. We serve clients across Africa and internationally, remotely, with video calls and messaging for close collaboration."
+      },
+      {
+        "question": "Do you provide ongoing support after launch?",
+        "answer": "Yes, every project can include a maintenance plan covering updates, backups, monitoring and technical support."
+      },
+      {
+        "question": "What if I don't have a logo or brand yet?",
+        "answer": "No problem. our brand identity and logo design services can build your visual identity from scratch before or alongside your website."
+      },
+      {
+        "question": "Will my website work well on mobile phones?",
+        "answer": "Yes. Every website we build is fully responsive and tested across common mobile devices."
+      },
+      {
+        "question": "Can you integrate mobile money payment options?",
+        "answer": "Yes, we regularly integrate mobile money and other local payment methods alongside card and bank payment options."
+      },
+      {
+        "question": "Do you sign contracts and NDAs?",
+        "answer": "Yes, every project begins with a written agreement covering scope, timeline, pricing and confidentiality."
+      },
+      {
+        "question": "What happens if I need changes after the project is delivered?",
+        "answer": "Minor revisions are typically included post-launch; larger changes are scoped and quoted as a new phase or covered under a maintenance plan."
+      },
+      {
+        "question": "Do you build software from scratch or use templates?",
+        "answer": "Both, depending on your needs and budget, we recommend the most cost-effective approach without compromising quality or ownership."
+      },
+      {
+        "question": "Who owns the final website or application?",
+        "answer": "You do. Upon final payment, all source code, designs and credentials are transferred to your full ownership."
+      },
+      {
+        "question": "Can you help migrate my existing website or system?",
+        "answer": "Yes, we handle migrations of existing websites, databases and systems with minimal downtime and careful data preservation."
+      },
+      {
+        "question": "Do you offer training for our internal team?",
+        "answer": "Yes, we provide hands-on training so your team can confidently manage content and day-to-day operations independently."
+      },
+      {
+        "question": "What industries do you have experience in?",
+        "answer": "We've worked across healthcare, education, retail, finance, NGOs, government and more."
+      },
+      {
+        "question": "How do I start a project with VousTech?",
+        "answer": "Simply request a free consultation through our contact form, we'll respond within one business day to discuss your needs."
+      },
+      {
+        "question": "Do you offer fixed-price or hourly billing?",
+        "answer": "Both models are available; most clients prefer fixed-price quotes for predictability, while ongoing support can be hourly or retainer-based."
+      },
+      {
+        "question": "Can you redesign my outdated website?",
+        "answer": "Yes, website redesigns are one of our most common projects, we preserve what works and modernize the rest."
+      },
+      {
+        "question": "Is my data safe with VousTech?",
+        "answer": "Yes, we follow security best practices at every stage and never share client data with third parties."
+      },
+      {
+        "question": "Do you work with startups with limited budgets?",
+        "answer": "Yes. we offer scoped MVP packages designed to help startups launch affordably and grow from a solid technical foundation."
+      },
+      {
+        "question": "What languages do you support for websites and apps?",
+        "answer": "We are not bound to any language, we build and deliver in English, French, and any other language of your choice, based on what your audience needs."
+      }
+    ]
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Let's Build Something Great Together.",
+    "body": "Tell us about your project and our team will get back to you within one business day with next steps.",
+    "form": {
+      "fullName": "Full Name",
+      "company": "Company/Organization",
+      "email": "Email Address",
+      "phone": "Phone Number/WhatsApp",
+      "serviceInterest": "Service Interested In",
+      "serviceInterestPlaceholder": "Select a service",
+      "budgetRange": "Budget Range",
+      "budgetRangePlaceholder": "Select a range (optional)",
+      "budgetRanges": [
+        "Under $1,000",
+        "$1,000 – $5,000",
+        "$5,000 – $15,000",
+        "$15,000 – $50,000",
+        "$50,000+",
+        "Not sure yet"
+      ],
+      "projectDetails": "Project Details",
+      "submit": "Request a Free Consultation",
+      "optional": "optional",
+      "requiredError": "Please fill in this field before continuing.",
+      "emailError": "Please enter a valid email address.",
+      "phoneError": "Please enter a valid phone number.",
+      "detailsMinError": "Please share a bit more detail (at least 20 characters).",
+      "serverError": "Something went wrong on our end. Please try again in a moment.",
+      "success": "Thank you! Your message has been sent. We'll be in touch within one business day.",
+      "sending": "Sending your message..."
+    },
+    "businessHours": {
+      "title": "Business Hours",
+      "weekdays": "Mon–Fri 8:00 AM–6:00 PM (CAT)",
+      "saturday": "Sat 9:00 AM–1:00 PM",
+      "sunday": "Sun Closed"
+    },
+    "connect": "Connect With Us",
+    "whatsappCta": "Chat With Us on WhatsApp"
+  },
+  "footer": {
+    "quickLinksTitle": "Quick Links",
+    "servicesTitle": "Services",
+    "servicesLinks": {
+      "webDevelopment": "Web Development",
+      "mobileApps": "Mobile Apps",
+      "uiUxDesign": "UI/UX Design",
+      "cloudSolutions": "Cloud Solutions",
+      "digitalMarketing": "Digital Marketing",
+      "viewAll": "View All Services"
+    },
+    "industriesTitle": "Industries",
+    "industriesLinks": {
+      "healthcare": "Healthcare",
+      "education": "Education",
+      "retail": "Retail",
+      "ngos": "NGOs",
+      "government": "Government",
+      "finance": "Finance"
+    },
+    "resourcesTitle": "Resources",
+    "resourcesLinks": {
+      "blog": "Blog",
+      "caseStudies": "Case Studies",
+      "faqs": "FAQs",
+      "careers": "Careers"
+    },
+    "legalTitle": "Legal",
+    "legalLinks": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    },
+    "newsletter": {
+      "title": "Stay updated with tech tips and VousTech news.",
+      "placeholder": "Your email address",
+      "subscribe": "Subscribe",
+      "success": "You're subscribed! Welcome to the VousTech community."
+    },
+    "copyright": "© {year} VousTech. All rights reserved.",
+    "tagline": "Technology That Moves Your Business Forward."
+  },
+  "system": {
+    "loading": "Loading...",
+    "sending": "Sending your message...",
+    "almostThere": "Almost there...",
+    "skipToContent": "Skip to content",
+    "whatsappLabel": "Chat with VousTech on WhatsApp",
+    "cookieNotice": "We use essential cookies to remember your theme and cookie preference.",
+    "cookieAccept": "Accept",
+    "cookieLearnMore": "Learn more",
+    "requestReceived": "Your request has been received.",
+    "noResultsSearch": "No results found. Try a different keyword.",
+    "submit": "Submit",
+    "continue": "Continue",
+    "sendMessage": "Send Message",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "heading": "This page doesn't exist. Let's get you back on track.",
+    "backHome": "Back to Home"
+  },
+  "careers": {
+    "heading": "Build Your Career at VousTech.",
+    "body": "We're not actively hiring right now, but we're always glad to hear from talented developers, designers and strategists. Send us your CV and a short note through our contact form and we'll keep it on file for future openings.",
+    "cta": "Get in Touch"
+  },
+  "legal": {
+    "privacy": {
+      "heading": "Privacy Policy",
+      "updated": "Last updated: {date}",
+      "sections": [
+        {
+          "title": "Information We Collect",
+          "body": "When you submit our contact form, we collect the information you provide (such as your name, email address, phone number and project details) solely to respond to your enquiry."
+        },
+        {
+          "title": "How We Use Your Information",
+          "body": "We use the information you provide to respond to your request, prepare quotes, and communicate about your project. We do not sell or rent your personal information to third parties."
+        },
+        {
+          "title": "Cookies",
+          "body": "We use a minimal set of cookies to remember your theme and language preference. See our Cookie Policy for details."
+        },
+        {
+          "title": "Data Retention",
+          "body": "We retain contact-form submissions only as long as needed to respond to your enquiry or fulfil a signed agreement."
+        },
+        {
+          "title": "Your Rights",
+          "body": "You may request access to, correction of, or deletion of your personal information at any time by contacting us."
+        },
+        {
+          "title": "Contact Us",
+          "body": "Questions about this policy can be sent through our contact page."
+        }
+      ]
+    },
+    "terms": {
+      "heading": "Terms of Service",
+      "updated": "Last updated: {date}",
+      "sections": [
+        {
+          "title": "Acceptance of Terms",
+          "body": "By using this website, you agree to these terms. If you do not agree, please do not use the site."
+        },
+        {
+          "title": "Services",
+          "body": "Any services described on this site are subject to a separate written agreement covering scope, timeline, pricing and confidentiality before work begins."
+        },
+        {
+          "title": "Intellectual Property",
+          "body": "All content on this website (text, graphics, logos and code) is the property of VousTech unless otherwise stated, and may not be reproduced without permission."
+        },
+        {
+          "title": "Limitation of Liability",
+          "body": "VousTech is not liable for indirect or consequential damages arising from the use of this website."
+        },
+        {
+          "title": "Changes to These Terms",
+          "body": "We may update these terms from time to time. Continued use of the site after changes constitutes acceptance of the new terms."
+        },
+        {
+          "title": "Contact Us",
+          "body": "Questions about these terms can be sent through our contact page."
+        }
+      ]
+    },
+    "cookies": {
+      "heading": "Cookie Policy",
+      "updated": "Last updated: {date}",
+      "sections": [
+        {
+          "title": "What Are Cookies",
+          "body": "Cookies are small text files stored on your device that help websites remember your preferences."
+        },
+        {
+          "title": "How We Use Cookies",
+          "body": "We use strictly necessary, first-party storage to remember your theme (light/dark) and language choice. We do not use third-party advertising or tracking cookies."
+        },
+        {
+          "title": "Managing Cookies",
+          "body": "You can clear your browser's local storage at any time to reset these preferences."
+        },
+        {
+          "title": "Contact Us",
+          "body": "Questions about this policy can be sent through our contact page."
+        }
+      ]
+    }
+  },
+  "servicesPage": {
+    "heading": "End-to-End Digital Solutions, Under One Roof.",
+    "intro": "Twenty-seven services under one roof, browse by category, or select a service to see the full detail.",
+    "indexLabel": "All services",
+    "viewDetails": "View details"
+  },
+  "servicePage": {
+    "breadcrumbServices": "Services",
+    "relatedHeading": "Explore More Services",
+    "ctaHeading": "Ready to talk about your {service} project?",
+    "ctaBody": "Tell us what you're trying to achieve and we'll get back to you within one business day."
+  },
+  "blog": {
+    "label": "Blog",
+    "heading": "Insights & Ideas",
+    "intro": "Practical guides on websites, software and digital growth, written for real businesses, not just developers.",
+    "readMore": "Read article",
+    "backToBlog": "Back to Blog",
+    "morePosts": "More from the blog",
+    "indexLabel": "Articles",
+    "posts": [
+      {
+        "slug": "mobile-first-design-matters",
+        "title": "Why Mobile-First Design Matters for African Businesses",
+        "excerpt": "Most of your visitors will land on your site from a phone, often on an inconsistent connection. Here's what that means for how you should design.",
+        "date": "2026-02-10",
+        "body": [
+          "For most businesses across Africa, mobile isn't a secondary experience. It's the primary one. The majority of visitors will reach your website from a smartphone, frequently over a mobile data connection that isn't always fast or stable.",
+          "That reality should shape design decisions from day one, not as an afterthought once the desktop version is finished. Mobile-first design means starting with the smallest screen and the slowest connection, then progressively enhancing the experience as more screen space and bandwidth become available.",
+          "In practice, this means lean pages that load quickly even on 3G, touch targets sized for fingers rather than cursors, and navigation that collapses sensibly into a drawer instead of a wide desktop menu bar.",
+          "It also means testing on real devices and real network conditions, not just a resized browser window on a fast office connection. A site that feels instant on a laptop can feel sluggish and frustrating on the device most of your customers are actually using.",
+          "The payoff is real: faster load times keep visitors from bouncing before your message even loads, and a smooth mobile experience builds the kind of trust that turns a visit into an enquiry."
+        ]
+      },
+      {
+        "slug": "signs-website-needs-security-audit",
+        "title": "5 Signs Your Website Needs a Security Audit",
+        "excerpt": "A website that looks fine on the surface can still carry real security risk. Here are five signals worth taking seriously.",
+        "date": "2026-01-22",
+        "body": [
+          "A website can look perfectly fine to visitors while quietly carrying real security risk underneath. Here are five signs it's time for a proper audit.",
+          "1. It hasn't been updated in a long time. Outdated platforms, plugins and libraries are one of the most common ways sites get compromised.",
+          "2. You don't know who has admin access. If you can't list every account with access to your site, that's a gap worth closing.",
+          "3. There's no HTTPS, or certificates are managed manually and sometimes lapse. Modern hosting should handle this automatically.",
+          "4. Contact and login forms have no rate-limiting or spam protection, leaving them open to abuse.",
+          "5. Backups are irregular or untested. A backup you've never restored from is not a real safety net.",
+          "None of these issues are unusual, and none require starting over, but each one is worth addressing deliberately rather than hoping it never becomes a problem."
+        ]
+      },
+      {
+        "slug": "getting-started-with-business-automation",
+        "title": "Getting Started with Business Automation",
+        "excerpt": "You don't need an enterprise system to start automating. Here's how to find the first process worth automating in your business.",
+        "date": "2025-12-05",
+        "body": [
+          "Business automation sounds like something only large companies do, but the best place to start is usually a small, repetitive task that already costs your team real time every week.",
+          "Start by listing the tasks your team repeats without much variation: sending the same follow-up email, copying data between two systems, generating the same report every Friday. These repetitive, rules-based tasks are the easiest and safest to automate first.",
+          "Next, map the exact steps of that one process before writing any code or choosing any tool. If you can't describe every step precisely, the process isn't ready to automate yet.",
+          "Then automate that single process end-to-end before moving to the next one. Small, working wins build the case (and the internal know-how) for tackling bigger automation projects later.",
+          "The goal isn't to automate everything at once. It's to free up a few real hours a week, prove the value, and build from there."
+        ]
+      }
+    ]
+  }
+}

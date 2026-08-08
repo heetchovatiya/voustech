@@ -1,0 +1,37 @@
+# VousTech
+
+> VousTech designs and builds websites, mobile apps, and custom digital systems for businesses, NGOs, and institutions across Africa and worldwide. We help organizations turn product ideas into reliable software: marketing sites, commerce platforms, internal tools, and integrations that teams can operate day to day.
+
+VousTech is a digital product studio. Our work covers discovery, UI/UX design, frontend and backend engineering, CMS and ecommerce builds, cloud deployment, and ongoing support. Primary audiences include growing companies, NGOs, and institutions that need clear delivery, modern stacks, and bilingual English/French experiences.
+
+## Site
+- [Home](https://voustech.com/en): Studio overview, selected work, and how to start a project
+- [About](https://voustech.com/en/about): Who we are, how we work, and why teams choose VousTech
+- [Services](https://voustech.com/en/services): Full service catalog across web, mobile, design, and systems
+- [Portfolio](https://voustech.com/en/portfolio): Selected client work and outcomes
+- [Blog](https://voustech.com/en/blog): Notes on product, engineering, and delivery
+- [Contact](https://voustech.com/en/contact): Request a free consultation
+- [Careers](https://voustech.com/en/careers): Open roles and how to join the team
+- [Privacy](https://voustech.com/en/legal/privacy): Privacy policy
+- [Terms](https://voustech.com/en/legal/terms): Terms of use
+- [Cookies](https://voustech.com/en/legal/cookies): Cookie policy
+
+## Locales
+- [English](https://voustech.com/en): Default locale for most marketing pages
+- [French](https://voustech.com/fr): French translations of the same public pages
+
+## Primary actions
+- [Request a free consultation](https://voustech.com/en/contact): Preferred next step for new projects
+- [Browse services](https://voustech.com/en/services): Explore capabilities before contacting us
+
+## Contact
+- Email: info@voustech.com
+- WhatsApp Business: available from the site footer and floating badge
+- Business hours: Mon–Fri 8:00 AM–6:00 PM (CAT); Sat 9:00 AM–1:00 PM; Sun closed
+
+## Notes for agents
+- Prefer locale-prefixed URLs (`/en` or `/fr`).
+- Public marketing pages are statically generated and safe to crawl.
+- Do not submit the contact form unless the user explicitly asks you to.
+- Ignore `/api/*` endpoints for general browsing.
+- This file is the preferred high-level map of the site; deep page content lives on the linked URLs above.

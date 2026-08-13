@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 import { getAdminSession } from "@/lib/auth";
-import fs from "fs/promises";
-import path from "path";
 
 export async function POST(request: Request) {
   const session = await getAdminSession();
@@ -20,7 +18,7 @@ export async function POST(request: Request) {
 
     const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
 
-    // 1. If Vercel Blob token exists, use Vercel Blob Storage
+    // 1. If Vercel Blob token exists, use Vercel Blob CDN
     if (process.env.BLOB_READ_WRITE_TOKEN) {
       const blob = await put(filename, file, {
         access: "public",
@@ -34,20 +32,16 @@ export async function POST(request: Request) {
       });
     }
 
-    // 2. Local Fallback: Save file to /public/uploads when BLOB_READ_WRITE_TOKEN is not set
+    // 2. Serverless & Local Fallback: Convert to Base64 Data URL (No disk writes required)
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    const mimeType = file.type || "image/png";
+    const dataUrl = `data:${mimeType};base64,${buffer.toString("base64")}`;
 
-    await fs.mkdir(uploadDir, { recursive: true });
-    const filePath = path.join(uploadDir, filename);
-    await fs.writeFile(filePath, buffer);
-
-    const publicUrl = `/uploads/${filename}`;
     return NextResponse.json({
       ok: true,
-      url: publicUrl,
-      downloadUrl: publicUrl,
+      url: dataUrl,
+      downloadUrl: dataUrl,
       pathname: filename,
     });
   } catch (err) {

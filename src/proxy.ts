@@ -12,8 +12,17 @@ const COOKIE_NAME = "voustech_admin_session";
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 1. Protect all /admin routes (except /admin/login)
-  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+  // Identify admin login route (including localized versions if any)
+  const isAdminLogin =
+    pathname === "/admin/login" ||
+    pathname.endsWith("/admin/login") ||
+    pathname.includes("/admin/login");
+
+  // 1. Protect all /admin routes (except login page)
+  if (
+    (pathname.startsWith("/admin") || pathname.includes("/admin")) &&
+    !isAdminLogin
+  ) {
     const token = request.cookies.get(COOKIE_NAME)?.value;
     let isValid = false;
 
@@ -32,7 +41,7 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  // 2. Protect all /api/admin endpoints (except auth routes)
+  // 2. Protect all /api/admin endpoints (except auth endpoints)
   if (
     pathname.startsWith("/api/admin") &&
     !pathname.startsWith("/api/admin/auth/login") &&
@@ -58,13 +67,17 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
+  // Skip next-intl localization for all admin and API paths
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api") || pathname.includes("/admin")) {
+    return NextResponse.next();
+  }
+
   // 3. Handle next-intl routing for public pages
   return handleIntl(request);
 }
 
 export const config = {
   matcher: [
-    // Match all admin pages, admin API routes, and localized public routes
     "/admin/:path*",
     "/api/admin/:path*",
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|manifest.webmanifest|llms.txt|icon.png|apple-icon.png|brand/).*)",

@@ -116,23 +116,8 @@ async function main() {
   }
   console.log(`✅ Seeded ${initialProjects.length} projects`);
 
-  // 5. Initial Trusted Client Logos
-  const initialLogos = [
-    { name: "Rawbank", logoUrl: "/brand/logo-mark.png", websiteUrl: "https://rawbank.com", displayOrder: 1 },
-    { name: "Vodacom", logoUrl: "/brand/logo-mark.png", websiteUrl: "https://vodacom.cd", displayOrder: 2 },
-    { name: "Equity BCDC", logoUrl: "/brand/logo-mark.png", websiteUrl: "https://equitybcdc.cd", displayOrder: 3 },
-    { name: "KaziCorp", logoUrl: "/brand/logo-mark.png", websiteUrl: "https://kazicorp.com", displayOrder: 4 },
-    { name: "Afriland Bank", logoUrl: "/brand/logo-mark.png", websiteUrl: "https://afrilandfirstbank.com", displayOrder: 5 },
-    { name: "Congo Tech Hub", logoUrl: "/brand/logo-mark.png", websiteUrl: "https://congotechhub.org", displayOrder: 6 },
-  ];
-
-  const existingLogosCount = await db.clientLogo.count();
-  if (existingLogosCount === 0) {
-    for (const logo of initialLogos) {
-      await db.clientLogo.create({ data: logo });
-    }
-    console.log(`✅ Seeded ${initialLogos.length} trusted client logos`);
-  }
+  // 5. Initial Trusted Client Logos (disabled until user adds real partners via admin dashboard)
+  // To show trusted partners, add client logos via /admin/brands
 
   // 6. Initial Blog Posts
   const initialBlogs = [

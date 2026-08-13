@@ -14,7 +14,7 @@ async function main() {
   // 1. Create Default Admin User
   const defaultPassword = process.env.ADMIN_PASSWORD ?? "adminpassword123";
   const passwordHash = await bcrypt.hash(defaultPassword, 10);
-  const adminEmail = process.env.CONTACT_INBOX_EMAIL ?? "info@voustech.com";
+  const adminEmail = process.env.ADMIN_EMAIL ?? process.env.CONTACT_INBOX_EMAIL ?? "info@voustech.com";
 
   await db.adminUser.upsert({
     where: { username: "admin" },

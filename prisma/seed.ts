@@ -116,7 +116,7 @@ async function main() {
   }
   console.log(`✅ Seeded ${initialProjects.length} projects`);
 
-  // 5. Initial Trusted Client Logos (disabled until user adds real partners via admin dashboard)
+  // 5. Initial Trusted Client Logos (Disabled until real partners are added via /admin/brands)
   // To show trusted partners, add client logos via /admin/brands
 
   // 6. Initial Blog Posts

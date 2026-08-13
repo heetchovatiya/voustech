@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -37,6 +38,7 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
     return NextResponse.json({ ok: true, logo });
   } catch (err) {
     console.error("[brands-create-error]", err);
@@ -68,6 +70,7 @@ export async function PUT(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
     return NextResponse.json({ ok: true, logo });
   } catch (err) {
     console.error("[brands-update-error]", err);
@@ -90,6 +93,7 @@ export async function DELETE(request: Request) {
     }
 
     await db.clientLogo.delete({ where: { id } });
+    revalidatePath("/", "layout");
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[brands-delete-error]", err);

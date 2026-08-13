@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { db } from "@/lib/db";

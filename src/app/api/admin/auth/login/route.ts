@@ -27,13 +27,18 @@ export async function POST(request: Request) {
       );
     }
 
-    const admin = await db.adminUser.findUnique({
-      where: { username: String(username).trim() },
+    const admin = await db.adminUser.findFirst({
+      where: {
+        OR: [
+          { username: String(username).trim() },
+          { email: String(username).trim().toLowerCase() },
+        ],
+      },
     });
 
     if (!admin) {
       return NextResponse.json(
-        { ok: false, error: "Invalid username or password" },
+        { ok: false, error: "Invalid username/email or password" },
         { status: 401 }
       );
     }
@@ -41,7 +46,7 @@ export async function POST(request: Request) {
     const passwordMatch = await verifyPassword(String(password), admin.passwordHash);
     if (!passwordMatch) {
       return NextResponse.json(
-        { ok: false, error: "Invalid username or password" },
+        { ok: false, error: "Invalid username/email or password" },
         { status: 401 }
       );
     }
@@ -58,7 +63,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // Send OTP email via Resend
+    // Send OTP email via Resend to the logging-in admin's email address
     const apiKey = process.env.RESEND_API_KEY;
     let resendError: string | null = null;
 
@@ -82,7 +87,6 @@ export async function POST(request: Request) {
 
       if (error) {
         console.warn(`[admin-login] Resend email warning: ${error.message}`);
-        console.warn(`[admin-login] 🔑 2FA OTP Code for development: ${otpCode}`);
         resendError = error.message;
       }
     } else {
@@ -98,8 +102,8 @@ export async function POST(request: Request) {
       ok: true,
       step: "otp_required",
       maskedEmail,
-      // Provide devOtp if Resend is in test mode or unverified domain
-      devOtp: otpCode,
+      // Only include devOtp in local development if Resend API key is missing
+      ...(process.env.NODE_ENV !== "production" && !apiKey ? { devOtp: otpCode } : {}),
       ...(resendError ? { resendWarning: resendError } : {}),
     });
   } catch (err) {

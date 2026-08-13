@@ -3,10 +3,26 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { JsonLd, faqJsonLd } from "@/lib/jsonld";
 import { FaqAccordion } from "./FaqAccordion";
+import { db } from "@/lib/db";
 
 export async function FaqSection() {
   const t = await getTranslations("faq");
-  const items = t.raw("items") as { question: string; answer: string }[];
+  const fallbackItems = t.raw("items") as { question: string; answer: string }[];
+
+  let dbFaqs: { question: string; answer: string }[] = [];
+  try {
+    const faqs = await db.faq.findMany({
+      where: { hidden: false },
+      orderBy: { displayOrder: "asc" },
+    });
+    if (faqs.length > 0) {
+      dbFaqs = faqs.map((f) => ({ question: f.question, answer: f.answer }));
+    }
+  } catch (err) {
+    console.error("[faq-section-db-error]", err);
+  }
+
+  const items = dbFaqs.length > 0 ? dbFaqs : fallbackItems;
 
   return (
     <section

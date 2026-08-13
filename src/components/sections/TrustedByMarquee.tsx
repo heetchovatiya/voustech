@@ -1,10 +1,24 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
-
-const placeholderSlots = Array.from({ length: 6 }, (_, i) => i + 1);
+import { db } from "@/lib/db";
 
 export async function TrustedByMarquee() {
   const t = await getTranslations("trustedBy");
+
+  let logos: { id: string; name: string; logoUrl: string; websiteUrl?: string | null }[] = [];
+  try {
+    logos = await db.clientLogo.findMany({
+      orderBy: { displayOrder: "asc" },
+    });
+  } catch (err) {
+    console.error("[trusted-by-db-error]", err);
+  }
+
+  if (logos.length === 0) {
+    return null;
+  }
+
+  const marqueeItems = [...logos, ...logos];
 
   return (
     <section aria-label={t("label")} className="border-b border-line bg-surface py-10">
@@ -13,27 +27,28 @@ export async function TrustedByMarquee() {
           {t("label")}
         </p>
 
-        {/* Static grid by default for a11y; animated track only when motion is allowed */}
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:hidden">
-          {placeholderSlots.map((slot) => (
+          {logos.map((logo) => (
             <li
-              key={slot}
-              className="flex h-12 items-center justify-center rounded-sm border border-dashed border-line font-mono text-label text-ink-muted"
+              key={logo.id}
+              className="flex h-14 items-center justify-center gap-2.5 rounded border border-line bg-surface-elevated px-4 font-mono text-label text-ink"
             >
-              Client {slot}
+              <img src={logo.logoUrl} alt={logo.name} className="h-5 w-5 object-contain" />
+              <span className="font-semibold text-xs">{logo.name}</span>
             </li>
           ))}
         </ul>
       </Container>
 
       <div className="relative hidden overflow-hidden lg:block" aria-hidden="true">
-        <div className="flex w-max motion-safe:animate-marquee motion-reduce:animate-none gap-12">
-          {[...placeholderSlots, ...placeholderSlots].map((slot, i) => (
+        <div className="flex w-max motion-safe:animate-marquee motion-reduce:animate-none gap-8">
+          {marqueeItems.map((logo, i) => (
             <div
-              key={`${slot}-${i}`}
-              className="flex h-12 w-40 shrink-0 items-center justify-center rounded-sm border border-dashed border-line font-mono text-label text-ink-muted"
+              key={`${logo.id}-${i}`}
+              className="flex h-14 w-44 shrink-0 items-center justify-center gap-2.5 rounded border border-line bg-surface-elevated px-4 font-mono text-label text-ink shadow-sm"
             >
-              Client {slot}
+              <img src={logo.logoUrl} alt={logo.name} className="h-5 w-5 object-contain" />
+              <span className="font-semibold text-xs">{logo.name}</span>
             </div>
           ))}
         </div>
@@ -41,3 +56,4 @@ export async function TrustedByMarquee() {
     </section>
   );
 }
+

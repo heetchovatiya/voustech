@@ -12,22 +12,31 @@ export interface ServiceDef {
   icon: IconName;
 }
 
-/** Order matches the spec's PDF order — do not resort. */
 export const services: ServiceDef[] = [
+  // Web & Apps
   { slug: "website-development", category: "web-apps", icon: "globe" },
   { slug: "custom-web-applications", category: "web-apps", icon: "code" },
   { slug: "mobile-app-development", category: "web-apps", icon: "smartphone" },
   { slug: "ui-ux-design", category: "web-apps", icon: "pen-tool" },
   { slug: "website-maintenance", category: "web-apps", icon: "wrench" },
-  { slug: "seo-optimization", category: "infrastructure-growth", icon: "search" },
+  { slug: "ecommerce-development", category: "web-apps", icon: "cart" },
+  { slug: "custom-software-development", category: "web-apps", icon: "terminal" },
+
+  // Design & Branding
   { slug: "brand-identity", category: "design-branding", icon: "palette" },
   { slug: "logo-design", category: "design-branding", icon: "diamond" },
   { slug: "graphic-design", category: "design-branding", icon: "image" },
   { slug: "social-media-management", category: "design-branding", icon: "share" },
-  { slug: "ecommerce-development", category: "web-apps", icon: "cart" },
+
+  // Business Systems
   { slug: "erp-solutions", category: "business-systems", icon: "layers" },
   { slug: "crm-development", category: "business-systems", icon: "users" },
   { slug: "business-automation", category: "business-systems", icon: "zap" },
+  { slug: "data-analytics", category: "business-systems", icon: "bar-chart" },
+  { slug: "ai-integration", category: "business-systems", icon: "cpu" },
+
+  // Infrastructure & Growth
+  { slug: "seo-optimization", category: "infrastructure-growth", icon: "search" },
   { slug: "cloud-solutions", category: "infrastructure-growth", icon: "cloud" },
   { slug: "hosting", category: "infrastructure-growth", icon: "server" },
   { slug: "domain-registration", category: "infrastructure-growth", icon: "link" },
@@ -46,9 +55,6 @@ export const services: ServiceDef[] = [
     category: "infrastructure-growth",
     icon: "gauge",
   },
-  { slug: "data-analytics", category: "business-systems", icon: "bar-chart" },
-  { slug: "ai-integration", category: "business-systems", icon: "cpu" },
-  { slug: "custom-software-development", category: "web-apps", icon: "terminal" },
 ];
 
 export type ServiceCategoryLabelKey =

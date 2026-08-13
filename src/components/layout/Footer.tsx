@@ -43,18 +43,11 @@ export async function Footer() {
     { href: "/blog", label: t("resourcesLinks.blog") },
     { href: "/portfolio", label: t("resourcesLinks.caseStudies") },
     { href: "/#faq", label: t("resourcesLinks.faqs") },
-    { href: "/careers", label: t("resourcesLinks.careers") },
-  ];
-
-  const legalLinks: { href: string; label: string }[] = [
-    { href: "/legal/privacy", label: t("legalLinks.privacy") },
-    { href: "/legal/terms", label: t("legalLinks.terms") },
-    { href: "/legal/cookies", label: t("legalLinks.cookies") },
   ];
 
   return (
     <footer className="border-t border-line bg-surface">
-      <Container className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-6">
+      <Container className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-5">
         <div className="sm:col-span-2 lg:col-span-2">
           <Logo variant="lockup" />
           <p className="mt-4 max-w-xs text-body-sm text-ink-muted">{t("tagline")}</p>
@@ -77,24 +70,6 @@ export async function Footer() {
         <FooterColumn title={t("quickLinksTitle")} links={quickLinks} />
         <FooterColumn title={t("servicesTitle")} links={serviceLinks} />
         <FooterColumn title={t("resourcesTitle")} links={resourceLinks} />
-
-        <div>
-          <h3 className="font-mono text-label uppercase tracking-[0.1em] text-ink-muted">
-            {t("legalTitle")}
-          </h3>
-          <ul className="mt-4 flex flex-col gap-2.5">
-            {legalLinks.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-body-sm text-ink-muted transition-colors duration-150 hover:text-tech-blue"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
       </Container>
 
       <Container className="border-t border-line py-8">

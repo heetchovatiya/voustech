@@ -20,9 +20,9 @@ export const siteConfig = {
 
   // Inbox that receives contact-form leads (override with CONTACT_INBOX_EMAIL).
   contactInboxEmail: process.env.CONTACT_INBOX_EMAIL ?? "info@voustech.com",
-  // TODO: this must be a verified sending domain/address in your Resend account.
+  // Sender address for Resend. Default to onboarding@resend.dev for test mode (override with CONTACT_FROM_EMAIL once domain is verified).
   contactFromEmail:
-    process.env.CONTACT_FROM_EMAIL ?? "no-reply@voustech.com",
+    process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev",
 
   businessHours: {
     weekdays: "Mon–Fri 8:00 AM–6:00 PM (CAT)",

@@ -1,10 +1,38 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/icons/Icon";
+import { db } from "@/lib/db";
 
 export async function Testimonials() {
   const t = await getTranslations("testimonials");
-  const items = t.raw("items") as { quote: string; name: string; role: string }[];
+  const fallbackItems = t.raw("items") as { quote: string; name: string; role: string }[];
+
+  let dbTestimonials: { id: string; clientName: string; clientRole: string; company: string; avatarUrl?: string | null; content: string; rating: number }[] = [];
+  try {
+    dbTestimonials = await db.testimonial.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (err) {
+    console.error("[testimonials-db-error]", err);
+  }
+
+  const items = dbTestimonials.length > 0
+    ? dbTestimonials.map((t) => ({
+        id: t.id,
+        quote: t.content,
+        name: t.clientName,
+        role: `${t.clientRole}, ${t.company}`,
+        rating: t.rating,
+        avatarUrl: t.avatarUrl,
+      }))
+    : fallbackItems.map((item, idx) => ({
+        id: `fallback-${idx}`,
+        quote: item.quote,
+        name: item.name,
+        role: item.role,
+        rating: 5,
+        avatarUrl: null,
+      }));
 
   return (
     <section aria-labelledby="testimonials-heading" className="border-b border-line bg-surface py-16 lg:py-24">
@@ -18,11 +46,16 @@ export async function Testimonials() {
 
         <div className="grid gap-5 sm:grid-cols-2">
           {items.map((item) => (
-            <figure key={item.name} className="flex flex-col rounded-sm border border-line bg-base p-6">
-              <div className="flex gap-1 text-tech-blue" aria-hidden="true">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Icon key={i} name="star" size={14} />
-                ))}
+            <figure key={item.id} className="flex flex-col rounded-sm border border-line bg-base p-6 shadow-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex gap-1 text-tech-blue" aria-hidden="true">
+                  {Array.from({ length: item.rating }).map((_, i) => (
+                    <Icon key={i} name="star" size={14} />
+                  ))}
+                </div>
+                {item.avatarUrl && (
+                  <img src={item.avatarUrl} alt={item.name} className="h-8 w-8 rounded-full object-cover border border-line" />
+                )}
               </div>
               <blockquote className="mt-3 flex-1 text-body-sm text-ink">
                 &ldquo;{item.quote}&rdquo;

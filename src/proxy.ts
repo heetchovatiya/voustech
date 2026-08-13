@@ -12,17 +12,8 @@ const COOKIE_NAME = "voustech_admin_session";
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Identify admin login route (including localized versions if any)
-  const isAdminLogin =
-    pathname === "/admin/login" ||
-    pathname.endsWith("/admin/login") ||
-    pathname.includes("/admin/login");
-
-  // 1. Protect all /admin routes (except login page)
-  if (
-    (pathname.startsWith("/admin") || pathname.includes("/admin")) &&
-    !isAdminLogin
-  ) {
+  // 1. Protect Admin UI Pages (/admin/...) - Exclude API routes and /admin/login
+  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
     const token = request.cookies.get(COOKIE_NAME)?.value;
     let isValid = false;
 
@@ -41,11 +32,10 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  // 2. Protect all /api/admin endpoints (except auth endpoints)
+  // 2. Protect Admin API Endpoints (/api/admin/...) - Exclude /api/admin/auth/*
   if (
     pathname.startsWith("/api/admin") &&
-    !pathname.startsWith("/api/admin/auth/login") &&
-    !pathname.startsWith("/api/admin/auth/verify-otp")
+    !pathname.startsWith("/api/admin/auth/")
   ) {
     const token = request.cookies.get(COOKIE_NAME)?.value;
     let isValid = false;
@@ -67,8 +57,8 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  // Skip next-intl localization for all admin and API paths
-  if (pathname.startsWith("/admin") || pathname.startsWith("/api") || pathname.includes("/admin")) {
+  // Bypass next-intl localization for all /admin and /api requests
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api")) {
     return NextResponse.next();
   }
 

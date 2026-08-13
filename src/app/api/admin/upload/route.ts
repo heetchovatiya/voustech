@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 import { getAdminSession } from "@/lib/auth";
+import fs from "fs/promises";
+import path from "path";
 
 export async function POST(request: Request) {
   const session = await getAdminSession();
@@ -16,27 +18,37 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "No file provided" }, { status: 400 });
     }
 
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error:
-            "BLOB_READ_WRITE_TOKEN is missing. Please link a Vercel Blob store in your Vercel Dashboard.",
-        },
-        { status: 500 }
-      );
+    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
+
+    // 1. If Vercel Blob token exists, use Vercel Blob Storage
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const blob = await put(filename, file, {
+        access: "public",
+      });
+
+      return NextResponse.json({
+        ok: true,
+        url: blob.url,
+        downloadUrl: blob.downloadUrl,
+        pathname: blob.pathname,
+      });
     }
 
-    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
-    const blob = await put(filename, file, {
-      access: "public",
-    });
+    // 2. Local Fallback: Save file to /public/uploads when BLOB_READ_WRITE_TOKEN is not set
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const uploadDir = path.join(process.cwd(), "public", "uploads");
 
+    await fs.mkdir(uploadDir, { recursive: true });
+    const filePath = path.join(uploadDir, filename);
+    await fs.writeFile(filePath, buffer);
+
+    const publicUrl = `/uploads/${filename}`;
     return NextResponse.json({
       ok: true,
-      url: blob.url,
-      downloadUrl: blob.downloadUrl,
-      pathname: blob.pathname,
+      url: publicUrl,
+      downloadUrl: publicUrl,
+      pathname: filename,
     });
   } catch (err) {
     console.error("[upload-error]", err);

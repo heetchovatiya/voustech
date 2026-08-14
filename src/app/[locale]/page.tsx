@@ -49,9 +49,9 @@ export default async function HomePage({
       <AboutPreview />
       <ServicesGrid />
       <Process />
-      <WhyChoose />
       <Technologies />
       <Industries />
+      <WhyChoose />
       <PortfolioPreview />
       <Testimonials />
       <StatsCounter />

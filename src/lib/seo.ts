@@ -78,5 +78,8 @@ export function buildMetadata({
       email: true,
       address: false,
     },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+    },
   };
 }

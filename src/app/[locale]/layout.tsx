@@ -16,6 +16,8 @@ import {
   organizationJsonLd,
   localBusinessJsonLd,
   websiteJsonLd,
+  personJsonLd,
+  breadcrumbJsonLd,
 } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site.config";
 import "../globals.css";
@@ -109,6 +111,12 @@ export default async function LocaleLayout({
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={localBusinessJsonLd()} />
         <JsonLd data={websiteJsonLd(locale)} />
+        <JsonLd data={personJsonLd()} />
+        <JsonLd
+          data={breadcrumbJsonLd([
+            { name: "Home", url: `${siteConfig.url}/${locale}` },
+          ])}
+        />
         <NextIntlClientProvider key={locale} locale={locale} messages={messages}>
           <ThemeProvider>
             <CustomCursor />

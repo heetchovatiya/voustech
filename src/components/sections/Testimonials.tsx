@@ -57,7 +57,7 @@ export async function Testimonials() {
                   <img src={item.avatarUrl} alt={item.name} className="h-8 w-8 rounded-full object-cover border border-line" />
                 )}
               </div>
-              <blockquote className="mt-3 flex-1 text-body-sm text-ink">
+              <blockquote cite="https://voustech.com/portfolio" className="mt-3 flex-1 text-body-sm text-ink">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-4 text-body-sm">

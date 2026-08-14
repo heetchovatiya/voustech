@@ -114,6 +114,76 @@ export function serviceJsonLd({
   };
 }
 
+export function personJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "VousTech Engineering & Solutions Team",
+    jobTitle: "Senior Software Engineers & Solutions Architects",
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    url: `${siteConfig.url}/about`,
+    sameAs: Object.values(siteConfig.social),
+    knowsAbout: [
+      "Software Engineering",
+      "Web Development",
+      "Mobile App Development",
+      "Cloud Infrastructure",
+      "Cybersecurity",
+      "AI & Automation",
+    ],
+  };
+}
+
+export function articleJsonLd({
+  title,
+  description,
+  url,
+  datePublished,
+  authorName = "VousTech Engineering Team",
+}: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  authorName?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url,
+    datePublished,
+    dateModified: datePublished,
+    author: {
+      "@type": "Person",
+      name: authorName,
+      jobTitle: "Software & Technology Specialists",
+      worksFor: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}/brand/logo-mark.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+  };
+}
+
 export function JsonLd({ data }: { data: object }) {
   return (
     <script

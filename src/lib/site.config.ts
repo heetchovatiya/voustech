@@ -8,7 +8,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://voustech.com",
 
   // TODO: replace with the real WhatsApp Business number (E.164, digits only, no "+").
-  whatsappNumber: "243900000000",
+  whatsappNumber: "918141140052",
 
   // TODO: replace with real profile URLs.
   social: {

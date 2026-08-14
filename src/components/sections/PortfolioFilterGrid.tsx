@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PortfolioCard } from "@/components/ui/PortfolioCard";
+import { ProjectModal, type ProjectModalDetails } from "@/components/ui/ProjectModal";
 
 interface PortfolioItem {
   title: string;
@@ -23,6 +24,8 @@ export function PortfolioFilterGrid({
   placeholderNote: string;
 }) {
   const [active, setActive] = useState("all");
+  const [selectedProject, setSelectedProject] = useState<ProjectModalDetails | null>(null);
+
   const filtered = active === "all" ? items : items.filter((i) => i.category === active);
   const labelFor = (id: string) => filters.find((f) => f.id === id)?.label ?? id;
 
@@ -57,10 +60,19 @@ export function PortfolioFilterGrid({
               categoryLabel={labelFor(item.category)}
               summary={item.summary}
               note={placeholderNote}
+              onClick={() =>
+                setSelectedProject({
+                  title: item.title,
+                  categoryLabel: labelFor(item.category),
+                  summary: item.summary,
+                })
+              }
             />
           ))}
         </div>
       )}
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </div>
   );
 }

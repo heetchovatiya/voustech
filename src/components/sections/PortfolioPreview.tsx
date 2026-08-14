@@ -2,11 +2,17 @@ import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { PortfolioCard } from "@/components/ui/PortfolioCard";
+import { PortfolioPreviewClient } from "./PortfolioPreviewClient";
 
 export async function PortfolioPreview() {
   const t = await getTranslations("portfolio");
   const items = t.raw("items") as { title: string; category: string; summary: string }[];
+
+  const previewItems = items.slice(0, 3).map((item) => ({
+    title: item.title,
+    categoryLabel: t(`filters.${item.category}`),
+    summary: item.summary,
+  }));
 
   return (
     <section aria-labelledby="portfolio-heading" className="border-b border-line bg-base py-16 lg:py-24">
@@ -18,16 +24,7 @@ export async function PortfolioPreview() {
           body={t("body")}
         />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.slice(0, 3).map((item) => (
-            <PortfolioCard
-              key={item.title}
-              title={item.title}
-              categoryLabel={t(`filters.${item.category}`)}
-              summary={item.summary}
-            />
-          ))}
-        </div>
+        <PortfolioPreviewClient items={previewItems} />
 
         <div className="mt-8">
           <Button href="/portfolio" variant="secondary" showArrow>

@@ -10,6 +10,7 @@ import { Icon, type IconName } from "@/components/icons/Icon";
 import { WhyChoose } from "@/components/sections/WhyChoose";
 import { Process } from "@/components/sections/Process";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { SeoCapabilities } from "@/components/sections/SeoCapabilities";
 
 const pillars: { key: "mission" | "vision" | "whyExist"; icon: IconName }[] = [
   { key: "mission", icon: "compass" },
@@ -77,6 +78,7 @@ export default async function AboutPage({
       </section>
 
       <WhyChoose />
+      <SeoCapabilities />
       <Process />
       <ContactSection />
     </>

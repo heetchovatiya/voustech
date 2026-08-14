@@ -76,8 +76,8 @@ export default async function AboutPage({
         </Container>
       </section>
 
-      <WhyChoose />
       <Process />
+      <WhyChoose />
       <ContactSection />
     </>
   );

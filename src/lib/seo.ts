@@ -79,7 +79,7 @@ export function buildMetadata({
       address: false,
     },
     verification: {
-      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ?? "googlebfd0cc8144330863",
+      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ?? "-wknzWmJpBel55Wy76fRhR3QeCiHUIzIGEMEbNTCYW0",
     },
   };
 }

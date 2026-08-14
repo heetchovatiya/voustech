@@ -43,6 +43,8 @@ export async function Footer() {
     { href: "/blog", label: t("resourcesLinks.blog") },
     { href: "/portfolio", label: t("resourcesLinks.caseStudies") },
     { href: "/#faq", label: t("resourcesLinks.faqs") },
+    { href: "/legal/privacy", label: "Privacy Policy" },
+    { href: "/legal/terms", label: "Terms of Service" },
   ];
 
   return (

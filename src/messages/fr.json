@@ -1,12 +1,12 @@
 {
   "meta": {
     "home": {
-      "title": "VousTech | Agence de développement web et logiciel pour l'Afrique",
-      "description": "VousTech conçoit des sites web, applications mobiles et logiciels sur mesure pour les entreprises, ONG et institutions en Afrique et à l'international, avec une expertise approfondie en RD Congo. Demandez une consultation gratuite.",
-      "ogTitle": "VousTech: La technologie qui fait avancer votre entreprise",
-      "ogDescription": "Sites web, applications et systèmes numériques conçus pour les entreprises en Afrique et à l'international. Découvrez comment VousTech peut vous aider à grandir.",
-      "twitterTitle": "VousTech | Solutions numériques et technologiques",
-      "twitterDescription": "Nous concevons des produits numériques sécurisés et modernes pour les entreprises, ONG et institutions du monde entier."
+      "title": "Développement Web & Logiciel — VousTech",
+      "description": "VousTech conçoit des sites web, applications mobiles et logiciels sur mesure pour les entreprises en Afrique et dans le monde. Devis gratuit.",
+      "ogTitle": "Développement Web & Logiciel — VousTech",
+      "ogDescription": "VousTech conçoit des sites web, applications mobiles et logiciels sur mesure pour les entreprises en Afrique et dans le monde. Devis gratuit.",
+      "twitterTitle": "Développement Web & Logiciel — VousTech",
+      "twitterDescription": "VousTech conçoit des sites web, applications mobiles et logiciels sur mesure pour les entreprises en Afrique et dans le monde. Devis gratuit."
     },
     "about": {
       "title": "À propos de VousTech | Notre mission, notre vision et notre équipe",
@@ -64,7 +64,7 @@
     "servicesMenuHint": "Organisés par domaine, choisissez une spécialité ou explorez le catalogue complet."
   },
   "hero": {
-    "title": "Nous construisons la technologie qui fait avancer votre entreprise.",
+    "title": "Développement Web & Logiciel qui fait avancer votre entreprise",
     "subhead": "Sites web, applications et systèmes numériques conçus pour les entreprises, institutions et entrepreneurs, avec des clients en Afrique et partout dans le monde.",
     "body": "Des solutions numériques sécurisées et modernes, des sites web aux logiciels d'entreprise, livrées avec des standards internationaux et une compréhension locale authentique.",
     "ctaPrimary": "Démarrer votre projet",

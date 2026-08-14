@@ -1,12 +1,12 @@
 {
   "meta": {
     "home": {
-      "title": "VousTech | Website & Software Development Company for Africa & Beyond",
-      "description": "VousTech designs and builds websites, mobile apps and custom software for businesses, NGOs and institutions across Africa and internationally, with deep expertise in DR Congo. Request a free consultation today.",
-      "ogTitle": "VousTech: Technology That Moves Your Business Forward",
-      "ogDescription": "Websites, apps and digital systems built for businesses across Africa and internationally. See how VousTech can help you grow.",
-      "twitterTitle": "VousTech | Digital & Technology Solutions",
-      "twitterDescription": "We design and build secure, modern digital products for businesses, NGOs and institutions worldwide."
+      "title": "Software & Website Development — VousTech",
+      "description": "VousTech builds high-performance websites, mobile apps and custom software for growing businesses across Africa and worldwide. Get a free quote today.",
+      "ogTitle": "Software & Website Development — VousTech",
+      "ogDescription": "VousTech builds high-performance websites, mobile apps and custom software for growing businesses across Africa and worldwide. Get a free quote today.",
+      "twitterTitle": "Software & Website Development — VousTech",
+      "twitterDescription": "VousTech builds high-performance websites, mobile apps and custom software for growing businesses across Africa and worldwide. Get a free quote today."
     },
     "about": {
       "title": "About VousTech | Our Mission, Vision & Team",
@@ -64,7 +64,7 @@
     "servicesMenuHint": "Organized by domain, pick a specialty or explore the full catalog."
   },
   "hero": {
-    "title": "We Build the Technology That Moves Your Business Forward.",
+    "title": "Software & Website Development That Moves Your Business Forward",
     "subhead": "Websites, applications and digital systems designed for businesses, institutions and entrepreneurs, with clients across Africa and around the world.",
     "body": "Secure, modern digital solutions from websites to enterprise software, delivered with international standards and genuine local understanding.",
     "ctaPrimary": "Start Your Project",

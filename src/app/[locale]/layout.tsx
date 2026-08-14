@@ -93,6 +93,18 @@ export default async function LocaleLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="VousTech RSS Feed"
+          href="/rss.xml"
+        />
+      </head>
       <body className="flex min-h-full min-w-0 flex-col overflow-x-clip font-body">
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={localBusinessJsonLd()} />

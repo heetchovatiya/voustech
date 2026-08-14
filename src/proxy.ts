@@ -12,6 +12,11 @@ const COOKIE_NAME = "voustech_admin_session";
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Immediately pass through static .html files (e.g. Google Search Console verification)
+  if (pathname.endsWith(".html") || pathname.includes("google")) {
+    return NextResponse.next();
+  }
+
   // 1. Protect Admin UI Pages (/admin/...) - Exclude API routes and /admin/login
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
     const token = request.cookies.get(COOKIE_NAME)?.value;

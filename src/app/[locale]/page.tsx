@@ -48,10 +48,10 @@ export default async function HomePage({
       <TrustedByMarquee />
       <AboutPreview />
       <ServicesGrid />
-      <Process />
+      <WhyChoose />
       <Technologies />
       <Industries />
-      <WhyChoose />
+      <Process />
       <PortfolioPreview />
       <Testimonials />
       <StatsCounter />

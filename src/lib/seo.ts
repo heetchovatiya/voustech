@@ -21,10 +21,11 @@ export function buildMetadata({
   ogDescription,
 }: PageSeoInput): Metadata {
   const languages: Record<string, string> = {};
+  const defaultLocale = routing.defaultLocale;
   for (const loc of routing.locales) {
     languages[loc] = `${siteConfig.url}/${loc}${path === "/" ? "" : path}`;
   }
-  languages["x-default"] = `${siteConfig.url}${path === "/" ? "" : path}`;
+  languages["x-default"] = `${siteConfig.url}/${defaultLocale}${path === "/" ? "" : path}`;
 
   const canonical = `${siteConfig.url}/${locale}${path === "/" ? "" : path}`;
   const ogImage = {

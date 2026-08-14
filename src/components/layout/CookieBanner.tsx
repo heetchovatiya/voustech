@@ -38,6 +38,7 @@ export function CookieBanner() {
       <div className="flex gap-3">
         <Link
           href="/legal/cookies"
+          aria-label="Read our Cookie Policy"
           className="text-body-sm text-tech-blue underline underline-offset-2 transition-colors duration-150 hover:text-deep-ocean"
         >
           {t("cookieLearnMore")}

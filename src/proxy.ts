@@ -70,6 +70,6 @@ export const config = {
   matcher: [
     "/admin/:path*",
     "/api/admin/:path*",
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|manifest.webmanifest|llms.txt|icon.png|apple-icon.png|brand/).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|manifest.webmanifest|llms.txt|icon.png|apple-icon.png|brand/|google*.html).*)",
   ],
 };

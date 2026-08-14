@@ -8,6 +8,7 @@ export interface ProjectModalDetails {
   title: string;
   categoryLabel: string;
   summary: string;
+  imageUrl?: string | null;
   technologies?: string[];
   features?: string[];
   liveUrl?: string;
@@ -64,6 +65,12 @@ export function ProjectModal({
         >
           <Icon name="close" size={20} />
         </button>
+
+        {project.imageUrl && (
+          <div className="mb-4 aspect-video w-full overflow-hidden rounded-sm border border-line bg-base">
+            <img src={project.imageUrl} alt={project.title} className="h-full w-full object-cover" />
+          </div>
+        )}
 
         {/* Header Badge */}
         <span className="inline-block font-mono text-label uppercase tracking-[0.14em] text-tech-blue">

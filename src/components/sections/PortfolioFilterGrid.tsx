@@ -8,6 +8,7 @@ interface PortfolioItem {
   title: string;
   category: string;
   summary: string;
+  imageUrl?: string | null;
 }
 
 export function PortfolioFilterGrid({
@@ -59,12 +60,14 @@ export function PortfolioFilterGrid({
               title={item.title}
               categoryLabel={labelFor(item.category)}
               summary={item.summary}
+              imageUrl={item.imageUrl}
               note={placeholderNote}
               onClick={() =>
                 setSelectedProject({
                   title: item.title,
                   categoryLabel: labelFor(item.category),
                   summary: item.summary,
+                  imageUrl: item.imageUrl,
                 })
               }
             />

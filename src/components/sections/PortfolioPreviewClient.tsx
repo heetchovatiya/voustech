@@ -7,7 +7,7 @@ import { ProjectModal, type ProjectModalDetails } from "@/components/ui/ProjectM
 export function PortfolioPreviewClient({
   items,
 }: {
-  items: { title: string; categoryLabel: string; summary: string }[];
+  items: { title: string; categoryLabel: string; summary: string; imageUrl?: string | null }[];
 }) {
   const [selectedProject, setSelectedProject] = useState<ProjectModalDetails | null>(null);
 
@@ -20,11 +20,13 @@ export function PortfolioPreviewClient({
             title={item.title}
             categoryLabel={item.categoryLabel}
             summary={item.summary}
+            imageUrl={item.imageUrl}
             onClick={() =>
               setSelectedProject({
                 title: item.title,
                 categoryLabel: item.categoryLabel,
                 summary: item.summary,
+                imageUrl: item.imageUrl,
               })
             }
           />

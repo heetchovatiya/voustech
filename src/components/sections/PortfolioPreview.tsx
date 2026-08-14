@@ -4,15 +4,43 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PortfolioPreviewClient } from "./PortfolioPreviewClient";
 
+import { db } from "@/lib/db";
+
 export async function PortfolioPreview() {
   const t = await getTranslations("portfolio");
-  const items = t.raw("items") as { title: string; category: string; summary: string }[];
+  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string; imageUrl?: string | null }[];
 
-  const previewItems = items.slice(0, 3).map((item) => ({
-    title: item.title,
-    categoryLabel: t(`filters.${item.category}`),
-    summary: item.summary,
-  }));
+  let dbProjects: { title: string; category: string; summary: string; imageUrl?: string | null }[] = [];
+  try {
+    const projects = await db.project.findMany({
+      where: { featured: true },
+      orderBy: { createdAt: "desc" },
+      take: 3,
+    });
+    if (projects.length > 0) {
+      dbProjects = projects.map((p) => ({
+        title: p.title,
+        category: p.category,
+        summary: p.summary,
+        imageUrl: p.imageUrl,
+      }));
+    }
+  } catch (err) {
+    console.error("[portfolio-preview-db-error]", err);
+  }
+
+  const items = dbProjects.length > 0 ? dbProjects : fallbackItems;
+
+  const previewItems = items.slice(0, 3).map((item) => {
+    const key = `filters.${item.category}`;
+    const categoryLabel = t.has(key) ? t(key) : item.category;
+    return {
+      title: item.title,
+      categoryLabel,
+      summary: item.summary,
+      imageUrl: item.imageUrl,
+    };
+  });
 
   return (
     <section aria-labelledby="portfolio-heading" className="border-b border-line bg-base py-16 lg:py-24">

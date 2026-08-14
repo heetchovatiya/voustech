@@ -2,12 +2,14 @@ export function PortfolioCard({
   title,
   categoryLabel,
   summary,
+  imageUrl,
   note,
   onClick,
 }: {
   title: string;
   categoryLabel: string;
   summary: string;
+  imageUrl?: string | null;
   note?: string;
   onClick?: () => void;
 }) {
@@ -22,16 +24,29 @@ export function PortfolioCard({
           onClick();
         }
       }}
-      className={`group flex flex-col rounded-sm border border-line bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-tech-blue hover:shadow-md ${
+      className={`group flex flex-col rounded-sm border border-line bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-tech-blue hover:shadow-md overflow-hidden ${
         onClick ? "cursor-pointer" : ""
       }`}
     >
-      <div
-        aria-hidden="true"
-        className="flex aspect-[4/3] items-center justify-center border-b border-line bg-tech-blue/10 font-mono text-label text-tech-blue transition-colors duration-150 group-hover:bg-tech-blue/20"
-      >
-        {categoryLabel}
-      </div>
+      {imageUrl ? (
+        <div className="aspect-[4/3] w-full overflow-hidden border-b border-line bg-surface">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={(e) => {
+              (e.currentTarget as HTMLElement).style.display = "none";
+            }}
+          />
+        </div>
+      ) : (
+        <div
+          aria-hidden="true"
+          className="flex aspect-[4/3] items-center justify-center border-b border-line bg-tech-blue/10 font-mono text-label text-tech-blue transition-colors duration-150 group-hover:bg-tech-blue/20"
+        >
+          {categoryLabel}
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-5">
         <p className="font-mono text-label uppercase tracking-[0.1em] text-tech-blue">
           {categoryLabel}

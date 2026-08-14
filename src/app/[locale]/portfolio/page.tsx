@@ -34,9 +34,9 @@ export default async function PortfolioPage({
   const t = await getTranslations("portfolio");
   const tNav = await getTranslations("nav");
 
-  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string }[];
+  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string; imageUrl?: string | null }[];
   
-  let dbProjects: { title: string; category: string; summary: string }[] = [];
+  let dbProjects: { title: string; category: string; summary: string; imageUrl?: string | null }[] = [];
   try {
     const projects = await db.project.findMany({ orderBy: { createdAt: "desc" } });
     if (projects.length > 0) {
@@ -44,6 +44,7 @@ export default async function PortfolioPage({
         title: p.title,
         category: p.category,
         summary: p.summary,
+        imageUrl: p.imageUrl,
       }));
     }
   } catch (err) {

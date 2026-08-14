@@ -9,6 +9,7 @@ export interface ProjectModalDetails {
   categoryLabel: string;
   summary: string;
   imageUrl?: string | null;
+  projectUrl?: string | null;
   technologies?: string[];
   features?: string[];
   liveUrl?: string;
@@ -121,9 +122,22 @@ export function ProjectModal({
 
         {/* Actions */}
         <div className="mt-8 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <Button href="/contact" variant="primary" showArrow className="w-full sm:w-auto">
-            Request Similar Solution
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-2">
+            {project.projectUrl && (
+              <a
+                href={project.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-tech-blue px-4 py-2.5 text-body-sm font-semibold text-white transition-colors hover:bg-deep-ocean"
+              >
+                <span>Visit Live Project</span>
+                <span>↗</span>
+              </a>
+            )}
+            <Button href="/contact" variant="primary" showArrow className="w-full sm:w-auto">
+              Request Similar Solution
+            </Button>
+          </div>
           <button
             type="button"
             onClick={onClose}

@@ -10,6 +10,8 @@ interface Project {
   summary: string;
   description: string;
   imageUrl: string | null;
+  projectUrl?: string | null;
+  displayOrder?: number;
   featured: boolean;
   tags: string;
   createdAt: string;
@@ -28,6 +30,8 @@ export default function AdminProjectsPage() {
   const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [projectUrl, setProjectUrl] = useState("");
+  const [displayOrder, setDisplayOrder] = useState<number>(0);
   const [featured, setFeatured] = useState(true);
   const [tagsInput, setTagsInput] = useState("");
   const [saving, setSaving] = useState(false);
@@ -87,6 +91,8 @@ export default function AdminProjectsPage() {
     setSummary("");
     setDescription("");
     setImageUrl("");
+    setProjectUrl("");
+    setDisplayOrder(projects.length);
     setFeatured(true);
     setTagsInput("Next.js, React, TypeScript");
     setIsModalOpen(true);
@@ -100,6 +106,8 @@ export default function AdminProjectsPage() {
     setSummary(project.summary);
     setDescription(project.description);
     setImageUrl(project.imageUrl || "");
+    setProjectUrl(project.projectUrl || "");
+    setDisplayOrder(project.displayOrder ?? 0);
     setFeatured(project.featured);
     try {
       const parsed = JSON.parse(project.tags);
@@ -126,6 +134,8 @@ export default function AdminProjectsPage() {
         summary,
         description,
         imageUrl,
+        projectUrl,
+        displayOrder,
         featured,
         tags: tagsArray,
       };
@@ -354,6 +364,29 @@ export default function AdminProjectsPage() {
                     <span className="text-[11px] text-slate-400 font-mono truncate">{imageUrl}</span>
                   </div>
                 )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 uppercase">Live Project URL (optional)</label>
+                  <input
+                    type="url"
+                    value={projectUrl}
+                    onChange={(e) => setProjectUrl(e.target.value)}
+                    placeholder="https://example.com"
+                    className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-white focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 uppercase">Display Order (0 = First)</label>
+                  <input
+                    type="number"
+                    value={displayOrder}
+                    onChange={(e) => setDisplayOrder(parseInt(e.target.value) || 0)}
+                    placeholder="0"
+                    className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-white focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center gap-3 pt-2">

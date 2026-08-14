@@ -8,13 +8,13 @@ import { db } from "@/lib/db";
 
 export async function PortfolioPreview() {
   const t = await getTranslations("portfolio");
-  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string; imageUrl?: string | null }[];
+  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string; imageUrl?: string | null; projectUrl?: string | null }[];
 
-  let dbProjects: { title: string; category: string; summary: string; imageUrl?: string | null }[] = [];
+  let dbProjects: { title: string; category: string; summary: string; imageUrl?: string | null; projectUrl?: string | null }[] = [];
   try {
     const projects = await db.project.findMany({
       where: { featured: true },
-      orderBy: { createdAt: "desc" },
+      orderBy: [{ displayOrder: "asc" }, { createdAt: "desc" }],
       take: 3,
     });
     if (projects.length > 0) {
@@ -23,6 +23,7 @@ export async function PortfolioPreview() {
         category: p.category,
         summary: p.summary,
         imageUrl: p.imageUrl,
+        projectUrl: p.projectUrl,
       }));
     }
   } catch (err) {
@@ -39,6 +40,7 @@ export async function PortfolioPreview() {
       categoryLabel,
       summary: item.summary,
       imageUrl: item.imageUrl,
+      projectUrl: item.projectUrl,
     };
   });
 

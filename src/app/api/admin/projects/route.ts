@@ -9,7 +9,7 @@ export async function GET() {
   }
 
   const projects = await db.project.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ displayOrder: "asc" }, { createdAt: "desc" }],
   });
   return NextResponse.json({ ok: true, projects });
 }
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { title, slug, category, summary, description, imageUrl, featured, tags } = body;
+    const { title, slug, category, summary, description, imageUrl, projectUrl, displayOrder, featured, tags } = body;
 
     if (!title || !category || !summary || !description) {
       return NextResponse.json({ ok: false, error: "Required fields missing" }, { status: 400 });
@@ -39,6 +39,8 @@ export async function POST(request: Request) {
         summary: String(summary).trim(),
         description: String(description).trim(),
         imageUrl: imageUrl ? String(imageUrl).trim() : null,
+        projectUrl: projectUrl ? String(projectUrl).trim() : null,
+        displayOrder: displayOrder !== undefined ? Number(displayOrder) : 0,
         featured: Boolean(featured),
         tags: tagsString,
       },
@@ -59,7 +61,7 @@ export async function PUT(request: Request) {
 
   try {
     const body = await request.json();
-    const { id, title, slug, category, summary, description, imageUrl, featured, tags } = body;
+    const { id, title, slug, category, summary, description, imageUrl, projectUrl, displayOrder, featured, tags } = body;
 
     if (!id) {
       return NextResponse.json({ ok: false, error: "Project ID required" }, { status: 400 });
@@ -76,6 +78,8 @@ export async function PUT(request: Request) {
         summary: summary ? String(summary).trim() : undefined,
         description: description ? String(description).trim() : undefined,
         imageUrl: imageUrl !== undefined ? String(imageUrl).trim() : undefined,
+        projectUrl: projectUrl !== undefined ? (projectUrl ? String(projectUrl).trim() : null) : undefined,
+        displayOrder: displayOrder !== undefined ? Number(displayOrder) : undefined,
         featured: featured !== undefined ? Boolean(featured) : undefined,
         tags: tagsString,
       },

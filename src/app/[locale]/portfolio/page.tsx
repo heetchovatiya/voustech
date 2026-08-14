@@ -34,17 +34,20 @@ export default async function PortfolioPage({
   const t = await getTranslations("portfolio");
   const tNav = await getTranslations("nav");
 
-  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string; imageUrl?: string | null }[];
+  const fallbackItems = t.raw("items") as { title: string; category: string; summary: string; imageUrl?: string | null; projectUrl?: string | null }[];
   
-  let dbProjects: { title: string; category: string; summary: string; imageUrl?: string | null }[] = [];
+  let dbProjects: { title: string; category: string; summary: string; imageUrl?: string | null; projectUrl?: string | null }[] = [];
   try {
-    const projects = await db.project.findMany({ orderBy: { createdAt: "desc" } });
+    const projects = await db.project.findMany({
+      orderBy: [{ displayOrder: "asc" }, { createdAt: "desc" }],
+    });
     if (projects.length > 0) {
       dbProjects = projects.map((p) => ({
         title: p.title,
         category: p.category,
         summary: p.summary,
         imageUrl: p.imageUrl,
+        projectUrl: p.projectUrl,
       }));
     }
   } catch (err) {

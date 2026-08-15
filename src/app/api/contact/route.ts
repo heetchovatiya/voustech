@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { siteConfig } from "@/lib/site.config";
 import { db } from "@/lib/db";
+import { translateFrenchToEnglish } from "@/lib/translate";
 
 const contactSchema = z.object({
   fullName: z.string().trim().min(1).max(200),
@@ -54,13 +55,21 @@ export async function POST(request: Request) {
 
   try {
     const resend = new Resend(apiKey);
+    const isFrench = (data.locale && data.locale.toLowerCase().startsWith("fr")) || false;
+
+    // Bilingual English translation for admin review if submitted in French
+    const translation = isFrench
+      ? translateFrenchToEnglish(data.projectDetails, data.serviceInterest)
+      : null;
+
     const fields: [string, string | undefined][] = [
       ["Full name", data.fullName],
       ["Company / organization", data.company],
       ["Email", data.email],
       ["Phone / WhatsApp", data.phone],
-      ["Service interested in", data.serviceInterest],
+      ["Service interested in", data.serviceInterest + (translation ? ` (EN: ${translation.translatedService})` : "")],
       ["Budget range", data.budgetRange],
+      ["Submission Language", isFrench ? "French 🇫🇷" : "English 🇬🇧"],
     ];
 
     const rowsHtml = fields
@@ -73,16 +82,32 @@ export async function POST(request: Request) {
 
     const html = `
       <div style="font-family:sans-serif;color:#1B262C;">
-        <h2 style="color:#0F4C75;">New consultation request</h2>
+        <h2 style="color:#0F4C75;">New consultation request (${isFrench ? "French 🇫🇷" : "English 🇬🇧"})</h2>
         <table>${rowsHtml}</table>
-        <p style="font-weight:600;margin-top:16px;">Project details</p>
-        <p style="white-space:pre-wrap;">${escapeHtml(data.projectDetails)}</p>
+        
+        <p style="font-weight:600;margin-top:16px;">Project details (${isFrench ? "Original French" : "Original Submission"}):</p>
+        <p style="white-space:pre-wrap;background:#F8FAFC;padding:12px;border-left:3px solid #0F4C75;">${escapeHtml(data.projectDetails)}</p>
+
+        ${
+          translation
+            ? `
+            <p style="font-weight:600;margin-top:16px;color:#0F4C75;">🇬🇧 English Translation / Summary Copy:</p>
+            <p style="white-space:pre-wrap;background:#F0F9FF;padding:12px;border-left:3px solid #00D4FF;">${escapeHtml(
+              translation.translatedText
+            )}</p>
+          `
+            : ""
+        }
       </div>
     `;
 
-    // 1. Always save lead to SQLite Database for Admin Panel management
+    // 1. Always save lead to Database for Admin Panel management
     let leadCreated = false;
     try {
+      const storedDetails = translation
+        ? `${data.projectDetails}\n\n--- 🇬🇧 ENGLISH COPY ---\n${translation.translatedText}`
+        : data.projectDetails;
+
       await db.lead.create({
         data: {
           fullName: data.fullName,
@@ -91,8 +116,8 @@ export async function POST(request: Request) {
           phone: data.phone || null,
           serviceInterest: data.serviceInterest,
           budgetRange: data.budgetRange || null,
-          projectDetails: data.projectDetails,
-          locale: data.locale || "en",
+          projectDetails: storedDetails,
+          locale: data.locale || (isFrench ? "fr" : "en"),
           status: "new",
         },
       });
@@ -106,31 +131,68 @@ export async function POST(request: Request) {
       from: `VousTech Website <${siteConfig.contactFromEmail}>`,
       to: siteConfig.contactInboxEmail,
       replyTo: data.email,
-      subject: `New consultation request from ${data.fullName}`,
+      subject: `[Lead] New consultation request from ${data.fullName} (${isFrench ? "FR 🇫🇷" : "EN 🇬🇧"})`,
       html,
     });
 
-    // 3. Send Personalized Auto-Reply Confirmation Email to Client
+    // 3. Send Personalized Auto-Reply Confirmation Email to Client (in French or English)
     try {
-      const autoReplyHtml = `
-        <div style="font-family:sans-serif;color:#1B262C;max-width:600px;margin:0 auto;padding:20px;border:1px solid #E2E8F0;border-radius:12px;">
-          <h2 style="color:#0F4C75;margin-top:0;">Thank you for contacting VousTech!</h2>
-          <p>Hi <strong>${escapeHtml(data.fullName)}</strong>,</p>
-          <p>We have successfully received your inquiry regarding <strong>${escapeHtml(data.serviceInterest)}</strong>.</p>
-          <p>Our engineering and design team is reviewing your project details. A dedicated technical consultant will get back to you within 1 business day with clear next steps for your project.</p>
-          <hr style="border:none;border-top:1px solid #E2E8F0;margin:20px 0;" />
-          <p style="font-size:12px;color:#64748B;">
-            <strong>VousTech Studio</strong><br />
-            Email: <a href="mailto:${siteConfig.contactInboxEmail}" style="color:#0F4C75;">${siteConfig.contactInboxEmail}</a><br />
-            Website: <a href="${siteConfig.url}" style="color:#0F4C75;">${siteConfig.url}</a>
-          </p>
-        </div>
-      `;
+      const autoReplySubject = isFrench
+        ? "Nous avons bien reçu votre demande — VousTech"
+        : "We've received your inquiry — VousTech";
+
+      const autoReplyHtml = isFrench
+        ? `
+          <div style="font-family:sans-serif;color:#1B262C;max-width:600px;margin:0 auto;padding:24px;border:1px solid #E2E8F0;border-radius:12px;">
+            <h2 style="color:#0F4C75;margin-top:0;">Merci d'avoir contacté VousTech !</h2>
+            <p>Bonjour <strong>${escapeHtml(data.fullName)}</strong>,</p>
+            <p>Nous vous confirmons la bonne réception de votre demande concernant <strong>${escapeHtml(
+              data.serviceInterest
+            )}</strong>.</p>
+            <p>Notre équipe technique et design examine attentivement les détails de votre projet. Un consultant dédié vous répondra sous 24 heures ouvrées pour échanger sur vos objectifs et vous proposer les meilleures solutions adaptées.</p>
+            <div style="background:#F8FAFC;padding:14px;border-radius:8px;margin:18px 0;">
+              <p style="margin:0 0 6px 0;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#64748B;font-weight:600;">Récapitulatif de votre demande :</p>
+              <p style="margin:0;font-size:13px;color:#334155;white-space:pre-wrap;">${escapeHtml(
+                data.projectDetails
+              )}</p>
+            </div>
+            <hr style="border:none;border-top:1px solid #E2E8F0;margin:20px 0;" />
+            <p style="font-size:12px;color:#64748B;line-height:1.5;">
+              <strong>Studio VousTech</strong><br />
+              Kinshasa, République Démocratique du Congo 🇨🇩 & Services Internationaux<br />
+              Email: <a href="mailto:${siteConfig.contactInboxEmail}" style="color:#0F4C75;">${siteConfig.contactInboxEmail}</a><br />
+              Site web: <a href="${siteConfig.url}/fr" style="color:#0F4C75;">${siteConfig.url}/fr</a>
+            </p>
+          </div>
+        `
+        : `
+          <div style="font-family:sans-serif;color:#1B262C;max-width:600px;margin:0 auto;padding:24px;border:1px solid #E2E8F0;border-radius:12px;">
+            <h2 style="color:#0F4C75;margin-top:0;">Thank you for contacting VousTech!</h2>
+            <p>Hi <strong>${escapeHtml(data.fullName)}</strong>,</p>
+            <p>We have successfully received your inquiry regarding <strong>${escapeHtml(
+              data.serviceInterest
+            )}</strong>.</p>
+            <p>Our engineering and design team is reviewing your project details. A dedicated technical consultant will get back to you within 1 business day with clear next steps for your project.</p>
+            <div style="background:#F8FAFC;padding:14px;border-radius:8px;margin:18px 0;">
+              <p style="margin:0 0 6px 0;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#64748B;font-weight:600;">Your Submission Summary:</p>
+              <p style="margin:0;font-size:13px;color:#334155;white-space:pre-wrap;">${escapeHtml(
+                data.projectDetails
+              )}</p>
+            </div>
+            <hr style="border:none;border-top:1px solid #E2E8F0;margin:20px 0;" />
+            <p style="font-size:12px;color:#64748B;line-height:1.5;">
+              <strong>VousTech Studio</strong><br />
+              Kinshasa, DRC 🇨🇩 & Global Delivery<br />
+              Email: <a href="mailto:${siteConfig.contactInboxEmail}" style="color:#0F4C75;">${siteConfig.contactInboxEmail}</a><br />
+              Website: <a href="${siteConfig.url}" style="color:#0F4C75;">${siteConfig.url}</a>
+            </p>
+          </div>
+        `;
 
       await resend.emails.send({
         from: `VousTech <${siteConfig.contactFromEmail}>`,
         to: data.email,
-        subject: `We've received your inquiry - VousTech`,
+        subject: autoReplySubject,
         html: autoReplyHtml,
       });
     } catch (replyErr) {

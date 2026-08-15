@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "next-intl";
 import { Icon } from "@/components/icons/Icon";
 
 export function FaqAccordion({
@@ -8,6 +9,8 @@ export function FaqAccordion({
 }: {
   items: { question: string; answer: string }[];
 }) {
+  const locale = useLocale();
+  const isFr = locale?.startsWith("fr");
   const [openId, setOpenId] = useState<number | null>(0);
   const [showAllMobile, setShowAllMobile] = useState(false);
 
@@ -78,7 +81,7 @@ export function FaqAccordion({
             onClick={() => setShowAllMobile(true)}
             className="flex w-full items-center justify-center gap-2 rounded-sm border border-line bg-surface-elevated py-2.5 text-body-sm font-semibold text-tech-blue hover:border-tech-blue"
           >
-            <span>Show All {items.length} FAQs</span>
+            <span>{isFr ? `Afficher toutes les ${items.length} questions` : `Show All ${items.length} FAQs`}</span>
             <span>↓</span>
           </button>
         </div>

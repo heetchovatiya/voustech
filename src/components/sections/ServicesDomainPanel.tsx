@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Icon, type IconName } from "@/components/icons/Icon";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -72,6 +72,8 @@ function ServiceRow({
  */
 export function ServicesDomainPanel() {
   const t = useTranslations("services");
+  const locale = useLocale();
+  const isFr = locale?.startsWith("fr");
   const categoryLabels = t.raw("categories") as Record<string, string>;
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [activeId, setActiveId] = useState<ServiceCategory>(domains[0].id);
@@ -261,7 +263,7 @@ export function ServicesDomainPanel() {
                   onClick={() => setShowAllMobile(true)}
                   className="mt-3 flex w-full items-center justify-center gap-2 rounded-sm border border-line bg-surface-elevated py-2.5 text-body-sm font-semibold text-tech-blue hover:border-tech-blue"
                 >
-                  <span>Show All {category.services.length} Services</span>
+                  <span>{isFr ? `Afficher les ${category.services.length} services` : `Show All ${category.services.length} Services`}</span>
                   <span>↓</span>
                 </button>
               )}

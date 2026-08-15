@@ -12,6 +12,7 @@ interface Lead {
   budgetRange: string | null;
   projectDetails: string;
   status: string;
+  locale?: string | null;
   createdAt: string;
 }
 
@@ -64,8 +65,8 @@ export default function AdminLeadsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Contact Leads</h1>
-          <p className="text-sm text-slate-400">Incoming consultation requests received from website visitors.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-white">Contact Leads & Inquiries</h1>
+          <p className="text-sm text-slate-400">Incoming consultation requests received from website visitors (with bilingual EN/FR support).</p>
         </div>
         <input
           type="text"
@@ -92,41 +93,57 @@ export default function AdminLeadsPage() {
                 <thead className="border-b border-slate-800 bg-slate-950 text-xs uppercase tracking-wider text-slate-400">
                   <tr>
                     <th className="px-4 py-3">Full Name</th>
-                    <th className="px-4 py-3">Email</th>
+                    <th className="px-4 py-3">Language</th>
                     <th className="px-4 py-3">Service Needed</th>
                     <th className="px-4 py-3">Date</th>
                     <th className="px-4 py-3 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800">
-                  {filtered.map((lead) => (
-                    <tr
-                      key={lead.id}
-                      onClick={() => setSelectedLead(lead)}
-                      className={`cursor-pointer transition ${
-                        selectedLead?.id === lead.id ? "bg-blue-600/10 border-l-4 border-l-blue-500" : "hover:bg-slate-800/50"
-                      }`}
-                    >
-                      <td className="px-4 py-3 font-medium text-white">{lead.fullName}</td>
-                      <td className="px-4 py-3 text-slate-300">{lead.email}</td>
-                      <td className="px-4 py-3 text-slate-300">{lead.serviceInterest}</td>
-                      <td className="px-4 py-3 text-xs text-slate-400">
-                        {new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                      </td>
-                      <td className="px-4 py-3 text-right">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDelete(lead.id);
-                          }}
-                          className="rounded p-1 text-slate-400 hover:bg-red-500/20 hover:text-red-400 transition"
-                          title="Delete Lead"
-                        >
-                          🗑
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {filtered.map((lead) => {
+                    const isFr = lead.locale?.toLowerCase().startsWith("fr");
+                    return (
+                      <tr
+                        key={lead.id}
+                        onClick={() => setSelectedLead(lead)}
+                        className={`cursor-pointer transition ${
+                          selectedLead?.id === lead.id ? "bg-blue-600/10 border-l-4 border-l-blue-500" : "hover:bg-slate-800/50"
+                        }`}
+                      >
+                        <td className="px-4 py-3">
+                          <p className="font-medium text-white">{lead.fullName}</p>
+                          <p className="text-xs text-slate-400">{lead.email}</p>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span
+                            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                              isFr
+                                ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
+                                : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                            }`}
+                          >
+                            {isFr ? "🇫🇷 French" : "🇬🇧 English"}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 text-slate-300">{lead.serviceInterest}</td>
+                        <td className="px-4 py-3 text-xs text-slate-400">
+                          {new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                        </td>
+                        <td className="px-4 py-3 text-right">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDelete(lead.id);
+                            }}
+                            className="rounded p-1 text-slate-400 hover:bg-red-500/20 hover:text-red-400 transition"
+                            title="Delete Lead"
+                          >
+                            🗑
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -137,7 +154,18 @@ export default function AdminLeadsPage() {
             {selectedLead ? (
               <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-lg space-y-4">
                 <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <h3 className="font-bold text-white text-lg">Lead Details</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold text-white text-lg">Lead Details</h3>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                        selectedLead.locale?.toLowerCase().startsWith("fr")
+                          ? "bg-indigo-500/20 text-indigo-300"
+                          : "bg-emerald-500/20 text-emerald-300"
+                      }`}
+                    >
+                      {selectedLead.locale?.toLowerCase().startsWith("fr") ? "🇫🇷 French Submission" : "🇬🇧 English Submission"}
+                    </span>
+                  </div>
                   <button
                     onClick={() => setSelectedLead(null)}
                     className="text-xs text-slate-400 hover:text-white"
@@ -157,7 +185,7 @@ export default function AdminLeadsPage() {
                     <p className="text-sm text-blue-400 break-all">{selectedLead.email}</p>
                   </div>
                   <div>
-                    <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Phone</label>
+                    <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Phone / WhatsApp</label>
                     <p className="text-sm text-slate-200">{selectedLead.phone || "N/A"}</p>
                   </div>
                 </div>
@@ -179,10 +207,32 @@ export default function AdminLeadsPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Project Details</label>
-                  <div className="mt-1 rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-300 leading-relaxed whitespace-pre-wrap">
-                    {selectedLead.projectDetails}
-                  </div>
+                  <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Inquiry & Requirements</label>
+                  {selectedLead.projectDetails.includes("--- 🇬🇧 ENGLISH COPY ---") ? (
+                    <div className="mt-1 space-y-3">
+                      <div className="rounded-lg border border-indigo-500/30 bg-indigo-950/20 p-3 text-xs leading-relaxed">
+                        <p className="font-semibold text-indigo-400 mb-1 flex items-center gap-1">
+                          <span>🇫🇷 Original French Submission:</span>
+                        </p>
+                        <p className="text-slate-200 whitespace-pre-wrap">
+                          {selectedLead.projectDetails.split("--- 🇬🇧 ENGLISH COPY ---")[0].trim()}
+                        </p>
+                      </div>
+
+                      <div className="rounded-lg border border-cyan-500/30 bg-cyan-950/20 p-3 text-xs leading-relaxed">
+                        <p className="font-semibold text-cyan-400 mb-1 flex items-center gap-1">
+                          <span>🇬🇧 English Translation / Copy:</span>
+                        </p>
+                        <p className="text-slate-200 whitespace-pre-wrap">
+                          {selectedLead.projectDetails.split("--- 🇬🇧 ENGLISH COPY ---")[1].trim()}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="mt-1 rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-300 leading-relaxed whitespace-pre-wrap">
+                      {selectedLead.projectDetails}
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (

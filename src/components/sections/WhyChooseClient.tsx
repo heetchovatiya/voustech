@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "next-intl";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon, type IconName } from "@/components/icons/Icon";
 
@@ -22,6 +23,8 @@ export function WhyChooseClient({
 }: {
   items: { title: string; body: string }[];
 }) {
+  const locale = useLocale();
+  const isFr = locale?.startsWith("fr");
   const [showAllMobile, setShowAllMobile] = useState(false);
 
   return (
@@ -71,7 +74,7 @@ export function WhyChooseClient({
             onClick={() => setShowAllMobile(true)}
             className="flex w-full items-center justify-center gap-2 rounded-sm border border-line bg-surface-elevated py-2.5 text-body-sm font-semibold text-tech-blue hover:border-tech-blue"
           >
-            <span>Show All {items.length} Reasons</span>
+            <span>{isFr ? `Afficher les ${items.length} raisons` : `Show All ${items.length} Reasons`}</span>
             <span>↓</span>
           </button>
         </div>

@@ -13,17 +13,17 @@ export async function Hero() {
         <div className="lg:col-span-6 xl:col-span-7">
           <h1
             id="hero-heading"
-            className="max-w-xl 2xl:max-w-3xl text-heading-lg font-semibold leading-[1.1] sm:text-display"
+            className="max-w-xl text-heading-lg font-semibold leading-[1.1] sm:text-display"
           >
             {t("title")}
           </h1>
-          <p className="mt-5 max-w-lg 2xl:max-w-2xl text-body text-ink-muted sm:text-body-lg">
+          <p className="mt-4 max-w-lg text-body text-ink-muted sm:text-body-lg">
             {t("subhead")}
           </p>
-          <p className="mt-3 max-w-lg 2xl:max-w-2xl text-body-sm leading-relaxed text-ink-muted">
+          <p className="mt-2 max-w-lg text-body-sm text-ink-muted">
             {t("body")}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Button href="/contact" showArrow>
               {t("ctaPrimary")}
             </Button>

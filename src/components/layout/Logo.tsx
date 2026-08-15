@@ -15,21 +15,33 @@ export function Logo({
   const isClient = useIsClient();
 
   const isDark = isClient && resolvedTheme === "dark";
+  const lockup = isDark ? "/brand/logo-lockup-dark.png" : "/brand/logo-lockup-light.png";
+  const lockupOnly = variant === "lockup";
 
   return (
     <Link
       href="/"
-      className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-85 shrink-0"
+      className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80 shrink-0"
       aria-label="VousTech home"
     >
       <Image
-        src={isDark ? "/brand/logo-lockup-dark.png" : "/brand/logo-lockup-light.png"}
+        src={lockup}
         alt="VousTech"
-        width={180}
-        height={54}
-        priority
-        className="h-9 sm:h-10 w-auto max-w-[150px] sm:max-w-[200px] object-contain"
+        width={192}
+        height={108}
+        priority={!lockupOnly}
+        className={lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}
       />
+      {!lockupOnly && (
+        <Image
+          src="/brand/logo-mark.png"
+          alt="VousTech"
+          width={100}
+          height={83}
+          priority
+          className="h-8 w-auto sm:hidden"
+        />
+      )}
     </Link>
   );
 }

@@ -28,7 +28,7 @@ export function localBusinessJsonLd() {
     "@type": "LocalBusiness",
     name: siteConfig.name,
     url: siteConfig.url,
-    image: `${siteConfig.url}/brand/voustech-light-bg.jpg`,
+    image: `${siteConfig.url}/brand/logo-lockup-light.png`,
     telephone: `+${siteConfig.whatsappNumber}`,
     address: {
       "@type": "PostalAddress",

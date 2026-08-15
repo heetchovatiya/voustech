@@ -343,7 +343,7 @@ export default function AdminProjectsPage() {
                     type="text"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
-                    placeholder="e.g. /brand/voustech-light-bg.jpg or Vercel Blob URL"
+                    placeholder="e.g. /brand/logo-lockup-light.png or Vercel Blob URL"
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3.5 py-2 text-white focus:border-blue-500 focus:outline-none"
                   />
                   <label className="cursor-pointer rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-slate-700 text-nowrap">

@@ -29,9 +29,9 @@ export function buildMetadata({
 
   const canonical = `${siteConfig.url}/${locale}${path === "/" ? "" : path}`;
   const ogImage = {
-    url: "/brand/voustech-light-bg.jpg",
-    width: 1264,
-    height: 843,
+    url: "/brand/logo-lockup-light.png",
+    width: 1200,
+    height: 630,
     alt: `${siteConfig.name} — digital technology partner`,
   };
 

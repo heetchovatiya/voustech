@@ -151,10 +151,10 @@ export default function AdminLeadsPage() {
                   <p className="font-medium text-white text-base">{selectedLead.fullName}</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Email</label>
-                    <p className="text-sm text-blue-400">{selectedLead.email}</p>
+                    <p className="text-sm text-blue-400 break-all">{selectedLead.email}</p>
                   </div>
                   <div>
                     <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Phone</label>
@@ -162,7 +162,7 @@ export default function AdminLeadsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Company</label>
                     <p className="text-sm text-slate-200">{selectedLead.company || "N/A"}</p>

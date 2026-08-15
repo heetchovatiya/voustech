@@ -109,6 +109,8 @@ export function ServicesDomainPanel() {
     }, 700);
   }
 
+  const [showAllMobile, setShowAllMobile] = useState(false);
+
   return (
     <div className="mt-10 min-w-0">
       {/* Desktop: sticky domains + scrolling lists */}
@@ -212,7 +214,10 @@ export function ServicesDomainPanel() {
                 key={domain.id}
                 type="button"
                 aria-pressed={current}
-                onClick={() => setActiveId(domain.id)}
+                onClick={() => {
+                  setActiveId(domain.id);
+                  setShowAllMobile(false);
+                }}
                 className={`inline-flex max-w-full items-center gap-2 border px-2.5 py-1.5 text-body-sm font-medium transition-colors duration-150 ${
                   current
                     ? "border-tech-blue bg-tech-blue/10 text-tech-blue"
@@ -226,8 +231,12 @@ export function ServicesDomainPanel() {
           })}
         </div>
 
-        {grouped.map((category) =>
-          category.id === activeId ? (
+        {grouped.map((category) => {
+          if (category.id !== activeId) return null;
+          const displayServices = showAllMobile ? category.services : category.services.slice(0, 3);
+          const hasMore = category.services.length > 3;
+
+          return (
             <div
               key={category.id}
               className="mt-5"
@@ -235,7 +244,7 @@ export function ServicesDomainPanel() {
               aria-label={categoryLabels[category.labelKey]}
             >
               <ul>
-                {category.services.map((service) => (
+                {displayServices.map((service) => (
                   <ServiceRow
                     key={service.slug}
                     slug={service.slug}
@@ -245,9 +254,20 @@ export function ServicesDomainPanel() {
                   />
                 ))}
               </ul>
+
+              {hasMore && !showAllMobile && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllMobile(true)}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-sm border border-line bg-surface-elevated py-2.5 text-body-sm font-semibold text-tech-blue hover:border-tech-blue"
+                >
+                  <span>Show All {category.services.length} Services</span>
+                  <span>↓</span>
+                </button>
+              )}
             </div>
-          ) : null
-        )}
+          );
+        })}
       </div>
     </div>
   );

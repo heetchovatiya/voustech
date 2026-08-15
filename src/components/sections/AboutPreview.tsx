@@ -30,7 +30,7 @@ export async function AboutPreview() {
             >
               {t("heading")}
             </h2>
-            <p className="mt-4 max-w-md text-body-sm leading-relaxed text-ink-muted sm:text-body">
+            <p className="mt-4 max-w-md 2xl:max-w-xl text-body-sm leading-relaxed text-ink-muted sm:text-body">
               {t("body")}
             </p>
             <div className="mt-7">
@@ -56,7 +56,7 @@ export async function AboutPreview() {
                         <h3 className="text-body-lg font-display font-semibold text-ink transition-colors duration-150 group-hover:text-tech-blue">
                           {t(`${pillar.key}.title`)}
                         </h3>
-                        <p className="mt-1.5 max-w-xl text-body-sm leading-relaxed text-ink-muted">
+                        <p className="mt-1.5 max-w-xl 2xl:max-w-3xl text-body-sm leading-relaxed text-ink-muted">
                           {t(`${pillar.key}.body`)}
                         </p>
                       </div>

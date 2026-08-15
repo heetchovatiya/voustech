@@ -53,7 +53,7 @@ export function Header() {
         <Container className="flex h-16 items-center justify-between gap-3">
           <Logo />
 
-          <nav aria-label={t("primaryNav")} className="hidden items-center gap-7 lg:flex">
+          <nav aria-label={t("primaryNav")} className="hidden items-center gap-6 xl:flex">
             {navItems.map((item) => {
               if ("mega" in item && item.mega) {
                 return <ServicesDesktopNav key={item.href} />;
@@ -65,7 +65,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`text-body-sm font-medium transition-colors duration-150 ${
+                  className={`whitespace-nowrap text-body-sm font-medium transition-colors duration-150 ${
                     active ? "text-tech-blue" : "text-ink hover:text-tech-blue"
                   }`}
                 >
@@ -75,15 +75,15 @@ export function Header() {
             })}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             <LanguageSwitcher />
             <ThemeToggle />
-            <Button href="/contact" showArrow className="!py-2.5">
+            <Button href="/contact" showArrow className="!py-2.5 whitespace-nowrap">
               {t("cta")}
             </Button>
           </div>
 
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 xl:hidden">
             <LanguageSwitcher />
             <ThemeToggle />
             <button
@@ -120,7 +120,7 @@ export function Header() {
 
       {/* Outside header: backdrop-blur creates a containing block that breaks fixed positioning. */}
       <div
-        className={`fixed inset-0 z-40 bg-ink/35 transition-opacity duration-200 ease-out lg:hidden ${
+        className={`fixed inset-0 z-40 bg-ink/35 transition-opacity duration-200 ease-out xl:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}
@@ -129,14 +129,12 @@ export function Header() {
 
       <div
         id="mobile-nav"
-        className={`fixed inset-y-0 right-0 z-40 flex w-[min(20rem,88vw)] flex-col bg-base shadow-xl transition-transform duration-300 ease-out lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-40 flex w-[min(20rem,88vw)] flex-col bg-base shadow-xl transition-transform duration-300 ease-out xl:hidden ${
           open ? "translate-x-0" : "pointer-events-none translate-x-full"
         }`}
         role="dialog"
         aria-modal="true"
         aria-label={t("menu")}
-        // Keep the off-screen drawer non-focusable / out of the a11y tree
-        // while closed (avoids agent-accessibility-tree failures).
         inert={!open}
       >
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-4">

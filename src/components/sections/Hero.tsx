@@ -11,21 +11,16 @@ export async function Hero() {
     <section aria-labelledby="hero-heading" className="border-b border-line bg-base">
       <Container className="grid items-center gap-12 py-14 lg:grid-cols-12 lg:gap-14 lg:py-20">
         <div className="lg:col-span-6 xl:col-span-7">
-          <div className="mb-4 inline-flex flex-wrap items-center gap-1.5 rounded-lg sm:rounded-full border border-tech-blue/30 bg-tech-blue/10 px-3 py-1.5 sm:px-3.5 sm:py-1 font-mono text-[11px] sm:text-xs font-semibold text-tech-blue uppercase tracking-wider max-w-full">
-            <span>Kinshasa, DRC 🇨🇩 & Global Delivery</span>
-            <span className="hidden sm:inline">•</span>
-            <span>Bilingual EN / FR</span>
-          </div>
           <h1
             id="hero-heading"
-            className="max-w-xl text-heading-lg font-semibold leading-[1.1] sm:text-display"
+            className="max-w-xl 2xl:max-w-3xl text-heading-lg font-semibold leading-[1.1] sm:text-display"
           >
             {t("title")}
           </h1>
-          <p className="mt-5 max-w-lg text-body text-ink-muted sm:text-body-lg">
+          <p className="mt-5 max-w-lg 2xl:max-w-2xl text-body text-ink-muted sm:text-body-lg">
             {t("subhead")}
           </p>
-          <p className="mt-3 max-w-lg text-body-sm leading-relaxed text-ink-muted">
+          <p className="mt-3 max-w-lg 2xl:max-w-2xl text-body-sm leading-relaxed text-ink-muted">
             {t("body")}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -40,7 +35,7 @@ export async function Hero() {
 
         <div className="lg:col-span-6 xl:col-span-5">
           <div
-            className="hero-signal relative mx-auto aspect-square w-full max-w-[32rem] lg:ml-auto lg:mr-0"
+            className="hero-signal relative mx-auto aspect-square w-full max-w-[32rem] 2xl:max-w-[38rem] lg:ml-auto lg:mr-0"
             aria-hidden="true"
           >
             <div className="hero-signal-ring hero-signal-ring-outer" />

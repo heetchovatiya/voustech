@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *, .dark, .dark *));
+
 /* ---------------------------------------------------------------------- */
 /* Brand palette — the 7 roles from the spec. Do not add new hues here;   */
 /* derive states (hover/muted/border) from these via opacity, not new hex.*/
@@ -32,7 +34,10 @@
   --cursor-hover: var(--color-deep-ocean);
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+:root.dark,
+html.dark,
+.dark {
   --bg-base: var(--color-dark-base);
   --bg-surface: var(--color-primary-dark);
   --ink: var(--color-white);

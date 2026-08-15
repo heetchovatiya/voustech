@@ -49,8 +49,11 @@ export default async function HomePage({
       <AboutPreview />
       <ServicesGrid />
       <WhyChoose />
+      <Technologies />
+      <Industries />
       <Process />
       <PortfolioPreview />
+      <Testimonials />
       <StatsCounter />
       <FaqSection />
       <ContactSection />

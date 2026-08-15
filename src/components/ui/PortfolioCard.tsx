@@ -15,9 +15,15 @@ export function PortfolioCard({
   note?: string;
   onClick?: () => void;
 }) {
+  const targetUrl = projectUrl
+    ? projectUrl.startsWith("http://") || projectUrl.startsWith("https://")
+      ? projectUrl
+      : `https://${projectUrl}`
+    : null;
+
   const handleCardClick = () => {
-    if (projectUrl) {
-      window.open(projectUrl, "_blank", "noopener,noreferrer");
+    if (targetUrl) {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
     } else if (onClick) {
       onClick();
     }
@@ -27,11 +33,11 @@ export function PortfolioCard({
     <article
       onClick={handleCardClick}
       className={`group flex flex-col rounded-sm border border-line bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-tech-blue hover:shadow-md overflow-hidden ${
-        projectUrl || onClick ? "cursor-pointer" : ""
+        targetUrl || onClick ? "cursor-pointer" : ""
       }`}
     >
       {/* Top Banner / Image */}
-      <div title={projectUrl ? `Visit ${title}` : "View Project Details"}>
+      <div title={targetUrl ? `Visit ${title}` : "View Project Details"}>
         {imageUrl ? (
           <div className="aspect-[4/3] w-full overflow-hidden border-b border-line bg-surface">
             <img
@@ -67,11 +73,17 @@ export function PortfolioCard({
 
         {/* Action Buttons */}
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-3">
-          {projectUrl && (
-            <span className="text-body-sm font-semibold text-tech-blue group-hover:underline flex items-center gap-1">
+          {targetUrl && (
+            <a
+              href={targetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-body-sm font-semibold text-tech-blue hover:underline flex items-center gap-1"
+            >
               <span>Visit Site</span>
               <span>↗</span>
-            </span>
+            </a>
           )}
           {onClick && (
             <button

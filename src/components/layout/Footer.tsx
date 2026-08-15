@@ -52,8 +52,16 @@ export async function Footer() {
       <Container className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-5">
         <div className="sm:col-span-2 lg:col-span-2">
           <Logo variant="lockup" />
-          <p className="mt-4 max-w-xs text-body-sm text-ink-muted">{t("tagline")}</p>
-          <p className="mt-2 text-label font-mono text-tech-blue">📍 Kinshasa, Democratic Republic of Congo 🇨🇩</p>
+          <a
+            href="https://maps.google.com/?q=Kinshasa,+Democratic+Republic+of+the+Congo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1.5 text-label font-mono text-tech-blue hover:underline transition-colors"
+            title="Open Kinshasa, DRC on Google Maps"
+          >
+            <span>📍 Kinshasa, Democratic Republic of Congo 🇨🇩</span>
+            <span className="text-xs opacity-75">↗</span>
+          </a>
           <div className="mt-6 flex gap-3">
             {socialLinks.map((s) => (
               <a

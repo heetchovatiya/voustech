@@ -5,7 +5,7 @@
 export const siteConfig = {
   name: "VousTech",
   // TODO: replace with the production domain once registered.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://voustech.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.voustech.com",
 
   // TODO: replace with the real WhatsApp Business number (E.164, digits only, no "+").
   whatsappNumber: "918141140052",

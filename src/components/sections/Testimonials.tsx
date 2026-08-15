@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/icons/Icon";
 import { db } from "@/lib/db";
+import { siteConfig } from "@/lib/site.config";
 
 export async function Testimonials() {
   const t = await getTranslations("testimonials");
@@ -57,7 +58,7 @@ export async function Testimonials() {
                   <img src={item.avatarUrl} alt={item.name} className="h-8 w-8 rounded-full object-cover border border-line" />
                 )}
               </div>
-              <blockquote cite="https://voustech.com/portfolio" className="mt-3 flex-1 text-body-sm text-ink">
+              <blockquote cite={`${siteConfig.url}/portfolio`} className="mt-3 flex-1 text-body-sm text-ink">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-4 text-body-sm">

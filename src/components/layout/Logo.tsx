@@ -1,9 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { Link } from "@/i18n/navigation";
-import { useIsClient } from "@/hooks/useIsClient";
 
 export function Logo({
   variant = "responsive",
@@ -11,11 +7,6 @@ export function Logo({
   /** `lockup` always shows the full wordmark (e.g. footer). */
   variant?: "responsive" | "lockup";
 }) {
-  const { resolvedTheme } = useTheme();
-  const isClient = useIsClient();
-
-  const isDark = isClient && resolvedTheme === "dark";
-  const lockup = isDark ? "/brand/logo-lockup-dark.png" : "/brand/logo-lockup-light.png";
   const lockupOnly = variant === "lockup";
 
   return (
@@ -24,14 +15,27 @@ export function Logo({
       className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80"
       aria-label="VousTech home"
     >
+      {/* Light Mode Logo (Visible in Light Theme) */}
       <Image
-        src={lockup}
+        src="/brand/logo-lockup-light.png"
         alt="VousTech"
         width={192}
         height={108}
         priority={!lockupOnly}
-        className={lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}
+        className={`dark:hidden ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}`}
       />
+
+      {/* Dark Mode Logo (Visible in Dark Theme) */}
+      <Image
+        src="/brand/logo-lockup-dark.png"
+        alt="VousTech"
+        width={192}
+        height={108}
+        priority={!lockupOnly}
+        className={`hidden dark:block ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:dark:block"}`}
+      />
+
+      {/* Mobile Icon Mark */}
       {!lockupOnly && (
         <Image
           src="/brand/logo-mark.png"

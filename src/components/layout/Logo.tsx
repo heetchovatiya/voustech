@@ -32,7 +32,7 @@ export function Logo({
         width={192}
         height={108}
         priority={!lockupOnly}
-        className={`hidden dark:block ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:dark:block"}`}
+        className={`hidden dark:block brightness-125 contrast-125 ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:dark:block"}`}
       />
 
       {/* Mobile Icon Mark */}

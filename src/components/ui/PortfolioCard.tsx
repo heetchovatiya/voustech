@@ -15,7 +15,7 @@ export function PortfolioCard({
   note?: string;
   onClick?: () => void;
 }) {
-  const handleMainClick = () => {
+  const handleCardClick = () => {
     if (projectUrl) {
       window.open(projectUrl, "_blank", "noopener,noreferrer");
     } else if (onClick) {
@@ -25,14 +25,13 @@ export function PortfolioCard({
 
   return (
     <article
-      className="group flex flex-col rounded-sm border border-line bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-tech-blue hover:shadow-md overflow-hidden"
+      onClick={handleCardClick}
+      className={`group flex flex-col rounded-sm border border-line bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-tech-blue hover:shadow-md overflow-hidden ${
+        projectUrl || onClick ? "cursor-pointer" : ""
+      }`}
     >
-      {/* Top Banner / Image (Links to Live Project URL if available) */}
-      <div
-        onClick={handleMainClick}
-        className="cursor-pointer"
-        title={projectUrl ? `Visit ${title}` : "View Project"}
-      >
+      {/* Top Banner / Image */}
+      <div title={projectUrl ? `Visit ${title}` : "View Project Details"}>
         {imageUrl ? (
           <div className="aspect-[4/3] w-full overflow-hidden border-b border-line bg-surface">
             <img
@@ -60,10 +59,7 @@ export function PortfolioCard({
           {categoryLabel}
         </p>
 
-        <h3
-          onClick={handleMainClick}
-          className="mt-2 text-body-lg font-display font-semibold transition-colors group-hover:text-tech-blue cursor-pointer"
-        >
+        <h3 className="mt-2 text-body-lg font-display font-semibold transition-colors group-hover:text-tech-blue">
           {title}
         </h3>
 
@@ -72,16 +68,10 @@ export function PortfolioCard({
         {/* Action Buttons */}
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-3">
           {projectUrl && (
-            <a
-              href={projectUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="text-body-sm font-semibold text-tech-blue hover:underline flex items-center gap-1"
-            >
-              <span>Live Site</span>
+            <span className="text-body-sm font-semibold text-tech-blue group-hover:underline flex items-center gap-1">
+              <span>Visit Site</span>
               <span>↗</span>
-            </a>
+            </span>
           )}
           {onClick && (
             <button
@@ -90,7 +80,7 @@ export function PortfolioCard({
                 e.stopPropagation();
                 onClick();
               }}
-              className="text-body-sm font-semibold text-ink-muted transition-colors hover:text-tech-blue ml-auto"
+              className="text-body-sm font-semibold text-ink-muted transition-colors hover:text-tech-blue ml-auto rounded px-2 py-1 hover:bg-surface-elevated"
             >
               View Details &rarr;
             </button>

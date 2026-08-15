@@ -11,6 +11,11 @@ export async function Hero() {
     <section aria-labelledby="hero-heading" className="border-b border-line bg-base">
       <Container className="grid items-center gap-12 py-14 lg:grid-cols-12 lg:gap-14 lg:py-20">
         <div className="lg:col-span-6 xl:col-span-7">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-tech-blue/30 bg-tech-blue/10 px-3.5 py-1 font-mono text-xs font-semibold text-tech-blue uppercase tracking-wider">
+            <span>Kinshasa, DRC 🇨🇩 & Global Delivery</span>
+            <span>•</span>
+            <span>Bilingual EN / FR</span>
+          </div>
           <h1
             id="hero-heading"
             className="max-w-xl text-heading-lg font-semibold leading-[1.1] sm:text-display"

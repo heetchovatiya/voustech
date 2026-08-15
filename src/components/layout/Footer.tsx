@@ -53,6 +53,7 @@ export async function Footer() {
         <div className="sm:col-span-2 lg:col-span-2">
           <Logo variant="lockup" />
           <p className="mt-4 max-w-xs text-body-sm text-ink-muted">{t("tagline")}</p>
+          <p className="mt-2 text-label font-mono text-tech-blue">📍 Kinshasa, Democratic Republic of Congo 🇨🇩</p>
           <div className="mt-6 flex gap-3">
             {socialLinks.map((s) => (
               <a

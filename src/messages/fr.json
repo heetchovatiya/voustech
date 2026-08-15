@@ -478,11 +478,11 @@
   },
   "stats": {
     "items": {
-      "projects": "Projets Livrés",
-      "experience": "Années d'Expérience",
-      "happyClients": "Clients Satisfaits",
-      "countries": "Pays Desservis",
-      "support": "Disponibilité du Support"
+      "ownership": "Propriété du Code",
+      "bilingual": "Opérations Bilingues",
+      "speed": "Vitesse d'Exécution",
+      "support": "Support Dédié",
+      "location": "Siège Afrique Centrale"
     }
   },
   "faq": {

@@ -54,7 +54,7 @@ export default async function PortfolioPage({
     console.error("[portfolio-db-error]", err);
   }
 
-  const items = dbProjects.length > 0 ? dbProjects : fallbackItems;
+  const items = dbProjects;
   const filterKeys = ["all", "websites", "webApps", "mobileApps", "ecommerce", "branding", "enterprise"];
   const filters = filterKeys.map((id) => ({ id, label: t(`filters.${id}`) }));
 
@@ -70,13 +70,37 @@ export default async function PortfolioPage({
 
       <section className="border-b border-line bg-base py-16 lg:py-24">
         <Container>
-          <PortfolioFilterGrid
-            items={items}
-            filters={filters}
-            filtersLabel={t("filtersLabel")}
-            noResultsLabel={t("noResults")}
-            placeholderNote={t("placeholderNote")}
-          />
+          {items.length > 0 ? (
+            <PortfolioFilterGrid
+              items={items}
+              filters={filters}
+              filtersLabel={t("filtersLabel")}
+              noResultsLabel={t("noResults")}
+              placeholderNote=""
+            />
+          ) : (
+            <div className="rounded-sm border border-tech-blue/30 bg-surface p-8 sm:p-12 shadow-sm text-center">
+              <div className="mx-auto max-w-2xl space-y-4">
+                <span className="inline-block rounded-full bg-tech-blue/10 px-3.5 py-1 font-mono text-xs font-semibold text-tech-blue uppercase tracking-wider">
+                  2026 Founding Partner Program 🚀
+                </span>
+                <h2 className="text-heading-md font-display font-semibold text-ink">
+                  Be Our First Highlighted Case Study
+                </h2>
+                <p className="text-body-sm text-ink-muted leading-relaxed">
+                  VousTech is currently onboarding our founding cohort of business and institutional partners in DRC, Central Africa, and globally. Collaborate directly with senior engineers under dedicated SLAs, 100% code ownership, and special launch pricing.
+                </p>
+                <div className="pt-4">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-sm bg-tech-blue px-6 py-3 text-body-sm font-semibold text-white transition-colors hover:bg-deep-ocean"
+                  >
+                    <span>Request a Founding Proposal &rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </Container>
       </section>
 

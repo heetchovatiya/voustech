@@ -15,7 +15,7 @@ export function Logo({
     >
       {/* Light Mode Lockup Logo */}
       <Image
-        src="/brand/logo-lockup-light.png"
+        src="/brand/voustech-light-bg.jpg"
         alt="VousTech"
         width={192}
         height={108}

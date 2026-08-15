@@ -65,30 +65,30 @@
   },
   "hero": {
     "title": "Développement Web & Logiciel qui fait avancer votre entreprise",
-    "subhead": "Sites web, applications et systèmes numériques conçus pour les entreprises, institutions et entrepreneurs, avec des clients en Afrique et partout dans le monde.",
-    "body": "Des solutions numériques sécurisées et modernes, des sites web aux logiciels d'entreprise, livrées avec des standards internationaux et une compréhension locale authentique.",
+    "subhead": "Sites web sur mesure, applications mobiles et outils numériques conçus pour les petites entreprises, PME, startups et institutions en Afrique et dans le monde entier.",
+    "body": "Des sites vitrines abordables pour petites entreprises locales aux logiciels d'entreprise personnalisés, livrés avec des standards d'ingénierie internationaux et un support bilingue FR / EN.",
     "ctaPrimary": "Démarrer votre projet",
     "ctaSecondary": "Voir nos réalisations"
   },
   "trustedBy": {
-    "label": "La confiance d'entreprises et d'institutions à travers l'Afrique et au-delà."
+    "label": "La confiance des petites entreprises, PME, startups et institutions à travers l'Afrique et au-delà."
   },
   "about": {
     "label": "À propos de VousTech",
-    "heading": "Une technologie pensée pour de vraies entreprises, de vrais marchés.",
-    "body": "VousTech est une entreprise technologique dédiée à aider les entreprises, institutions et entrepreneurs à exploiter la puissance des outils numériques modernes, au service de clients en Afrique et à l'international, avec des racines profondes en République Démocratique du Congo. Des sites web sur mesure et applications mobiles aux logiciels d'entreprise et à l'infrastructure cloud, nous concevons des solutions sécurisées, évolutives et conçues pour performer dans les conditions réelles du marché.",
+    "heading": "Une Technologie Conçue pour les Petites Entreprises, PME et Startups.",
+    "body": "VousTech est un partenaire technologique dédié à donner aux petites entreprises, commerces locaux, startups et institutions les moyens de réussir grâce aux outils numériques modernes. Basés à Kinshasa, en République Démocratique du Congo, nous créons des solutions rapides, accessibles et évolutives pour aider les PME à rivaliser et se développer sur les marchés locaux et internationaux.",
     "pillarsLabel": "Qui Nous Sommes",
     "mission": {
       "title": "Notre Mission",
-      "body": "Rendre la technologie de classe mondiale accessible, abordable et localement soutenue pour chaque organisation que nous servons."
+      "body": "Rendre la technologie de classe mondiale accessible, abordable et soutenue localement pour les petites entreprises et organisations en croissance."
     },
     "vision": {
       "title": "Notre Vision",
-      "body": "Une Afrique numériquement autonome, où chaque entreprise (quelle que soit sa taille ou sa localisation) dispose des outils pour rivaliser et prospérer en ligne."
+      "body": "Une économie numérique dynamique où chaque petite entreprise, commerçant et startup dispose des outils pour renforcer sa crédibilité, accepter des paiements et prospérer en ligne."
     },
     "whyExist": {
       "title": "Notre Raison d'Être",
-      "body": "Trop d'organisations sont mal servies par leurs partenaires technologiques, laissées avec des sites inachevés, des systèmes peu fiables, ou des solutions conçues sans compréhension du contexte local. VousTech existe pour combler cet écart : en alliant les meilleures pratiques internationales à une compréhension réelle des marchés que nous servons, où que se trouvent nos clients, dans la langue dans laquelle ils travaillent."
+      "body": "Trop de petites entreprises et startups sont délaissées par les prestataires technologiques—laissées avec des sites trop chers, inachevés ou des systèmes complexes conçus sans compréhension du marché local. VousTech existe pour combler cet écart avec des prix transparents, des délais rapides et un accompagnement bilingue dédié."
     },
     "learnMore": "En savoir plus sur nous"
   },

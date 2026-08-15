@@ -15,14 +15,14 @@ export function Logo({
       className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80"
       aria-label="VousTech home"
     >
-      {/* Light Mode Logo (Darkened for maximum visibility on white/light backgrounds) */}
+      {/* Light Mode Logo */}
       <Image
         src="/brand/logo-lockup-light.png"
         alt="VousTech"
         width={192}
         height={108}
         priority={!lockupOnly}
-        className={`dark:hidden brightness-[0.3] contrast-[2] ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}`}
+        className={`dark:hidden ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}`}
       />
 
       {/* Dark Mode Logo (Brightened for dark background) */}

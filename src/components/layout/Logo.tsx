@@ -15,17 +15,17 @@ export function Logo({
       className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80"
       aria-label="VousTech home"
     >
-      {/* Light Mode Logo (Visible in Light Theme) */}
+      {/* Light Mode Logo (Darkened for maximum visibility on white/light backgrounds) */}
       <Image
         src="/brand/logo-lockup-light.png"
         alt="VousTech"
         width={192}
         height={108}
         priority={!lockupOnly}
-        className={`dark:hidden ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}`}
+        className={`dark:hidden brightness-[0.3] contrast-[2] ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}`}
       />
 
-      {/* Dark Mode Logo (Visible in Dark Theme) */}
+      {/* Dark Mode Logo (Brightened for dark background) */}
       <Image
         src="/brand/logo-lockup-dark.png"
         alt="VousTech"
@@ -35,16 +35,21 @@ export function Logo({
         className={`hidden dark:block brightness-125 contrast-125 ${lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:dark:block"}`}
       />
 
-      {/* Mobile Icon Mark */}
+      {/* Mobile Icon Mark & Crisp Wordmark */}
       {!lockupOnly && (
-        <Image
-          src="/brand/logo-mark.png"
-          alt="VousTech"
-          width={100}
-          height={83}
-          priority
-          className="h-8 w-auto sm:hidden"
-        />
+        <div className="flex items-center gap-2 sm:hidden">
+          <Image
+            src="/brand/logo-mark.png"
+            alt="VousTech"
+            width={100}
+            height={83}
+            priority
+            className="h-8 w-auto"
+          />
+          <span className="font-display text-body-lg font-bold tracking-[0.14em] uppercase text-deep-ocean dark:text-white">
+            VOUS<span className="text-tech-blue">TECH</span>
+          </span>
+        </div>
       )}
     </Link>
   );

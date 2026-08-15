@@ -10,28 +10,20 @@ export function Logo({
   return (
     <Link
       href="/"
-      className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80 shrink-0"
+      className="flex items-center gap-2.5 opacity-100 transition-opacity duration-150 hover:opacity-80 shrink-0"
       aria-label="VousTech home"
     >
-      {/* Light Mode Lockup Logo */}
       <Image
-        src="/brand/voustech-light-bg.jpg"
+        src="/brand/logo-mark.png"
         alt="VousTech"
-        width={192}
-        height={108}
+        width={36}
+        height={36}
         priority
-        className="h-8 sm:h-9 w-auto dark:hidden object-contain"
+        className="h-8 w-auto object-contain"
       />
-
-      {/* Dark Mode Lockup Logo */}
-      <Image
-        src="/brand/logo-lockup-dark.png"
-        alt="VousTech"
-        width={192}
-        height={108}
-        priority
-        className="hidden h-8 sm:h-9 w-auto dark:block object-contain brightness-110"
-      />
+      <span className="font-display text-xl font-bold tracking-tight text-ink">
+        Vous<span className="text-tech-blue">Tech</span>
+      </span>
     </Link>
   );
 }

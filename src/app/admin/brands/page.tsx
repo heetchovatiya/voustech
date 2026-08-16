@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { convertImageToWebP } from "@/lib/imageUtils";
 
 interface ClientLogo {
   id: string;
   name: string;
   logoUrl: string;
-  websiteUrl?: string;
+  websiteUrl?: string | null;
   displayOrder: number;
+  createdAt: string;
 }
 
 export default function AdminBrandsPage() {
@@ -61,13 +63,17 @@ export default function AdminBrandsPage() {
   }
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const rawFile = e.target.files?.[0];
+    if (!rawFile) return;
 
     setUploading(true);
     try {
+      const webpFile = await convertImageToWebP(rawFile, { quality: 0.85, maxDim: 800 });
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", webpFile);
+      if (name) {
+        formData.append("name", name);
+      }
 
       const res = await fetch("/api/admin/upload", {
         method: "POST",

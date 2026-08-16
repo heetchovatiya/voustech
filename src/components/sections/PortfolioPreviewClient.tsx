@@ -84,13 +84,17 @@ export function PortfolioPreviewClient({
               >
                 {/* Thumbnail Image */}
                 {item.imageUrl ? (
-                  <div className="relative h-44 w-full overflow-hidden bg-surface-elevated/50 border-b border-line flex items-center justify-center p-2">
+                  <div className="relative h-44 w-full overflow-hidden bg-surface-elevated border-b border-line flex items-center justify-center">
                     <img
                       src={item.imageUrl}
                       alt={item.title}
-                      className="max-h-full max-w-full object-contain p-1 transition-transform duration-300 group-hover:scale-105"
+                      className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
-                        (e.currentTarget as HTMLElement).style.display = "none";
+                        const target = e.currentTarget;
+                        target.style.display = "none";
+                        if (target.parentElement) {
+                          target.parentElement.innerHTML = `<div class="flex h-full w-full items-center justify-center font-mono text-xs uppercase tracking-wider text-tech-blue bg-tech-blue/10">${item.categoryLabel}</div>`;
+                        }
                       }}
                     />
                     <span className="absolute bottom-2 left-2 rounded-sm bg-base/90 px-2 py-0.5 font-mono text-[10px] font-semibold text-tech-blue uppercase tracking-wider backdrop-blur-xs border border-line/60">
@@ -98,11 +102,11 @@ export function PortfolioPreviewClient({
                     </span>
                   </div>
                 ) : (
-                  <div className="h-20 w-full bg-tech-blue/5 border-b border-line flex items-center justify-between px-3">
-                    <span className="font-mono text-[11px] font-semibold text-tech-blue uppercase tracking-wider">
+                  <div className="h-24 w-full bg-tech-blue/10 border-b border-line flex items-center justify-between px-4">
+                    <span className="font-mono text-xs font-semibold text-tech-blue uppercase tracking-wider">
                       {item.categoryLabel}
                     </span>
-                    <Icon name="code" size={16} className="text-tech-blue/60" />
+                    <Icon name="code" size={18} className="text-tech-blue/70" />
                   </div>
                 )}
 

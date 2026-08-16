@@ -39,20 +39,24 @@ export function PortfolioCard({
       {/* Top Banner / Image */}
       <div title={targetUrl ? `Visit ${title}` : "View Project Details"}>
         {imageUrl ? (
-          <div className="aspect-[16/10] w-full overflow-hidden border-b border-line bg-surface-elevated/40 flex items-center justify-center p-2">
+          <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-surface-elevated flex items-center justify-center">
             <img
               src={imageUrl}
               alt={title}
-              className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-102"
+              className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
               onError={(e) => {
-                (e.currentTarget as HTMLElement).style.display = "none";
+                const target = e.currentTarget;
+                target.style.display = "none";
+                if (target.parentElement) {
+                  target.parentElement.innerHTML = `<div class="flex h-full w-full items-center justify-center font-mono text-xs uppercase tracking-wider text-tech-blue bg-tech-blue/10">${categoryLabel}</div>`;
+                }
               }}
             />
           </div>
         ) : (
           <div
             aria-hidden="true"
-            className="flex aspect-[4/3] items-center justify-center border-b border-line bg-tech-blue/10 font-mono text-label text-tech-blue transition-colors duration-150 group-hover:bg-tech-blue/20"
+            className="flex aspect-[16/10] items-center justify-center border-b border-line bg-tech-blue/10 font-mono text-label text-tech-blue transition-colors duration-150 group-hover:bg-tech-blue/20"
           >
             {categoryLabel}
           </div>

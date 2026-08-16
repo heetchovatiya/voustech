@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { convertImageToWebP } from "@/lib/imageUtils";
 
 interface BlogPost {
   id: string;
@@ -8,7 +9,7 @@ interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
-  coverImage?: string;
+  coverImage?: string | null;
   author: string;
   published: boolean;
   createdAt: string;
@@ -74,13 +75,17 @@ export default function AdminBlogPage() {
   }
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const rawFile = e.target.files?.[0];
+    if (!rawFile) return;
 
     setUploading(true);
     try {
+      const webpFile = await convertImageToWebP(rawFile, { quality: 0.8, maxDim: 1600 });
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", webpFile);
+      if (slug || title) {
+        formData.append("name", slug || title);
+      }
 
       const res = await fetch("/api/admin/upload", {
         method: "POST",

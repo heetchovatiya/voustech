@@ -9,7 +9,8 @@
     "db:push": "prisma db push",
     "db:seed": "npx tsx prisma/seed.ts",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "images:optimize": "python3 scripts/convert-to-webp.py"
   },
   "prisma": {
     "seed": "npx tsx prisma/seed.ts"

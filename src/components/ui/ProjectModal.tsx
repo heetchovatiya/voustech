@@ -68,8 +68,8 @@ export function ProjectModal({
         </button>
 
         {project.imageUrl && (
-          <div className="mb-4 aspect-video w-full overflow-hidden rounded-sm border border-line bg-base">
-            <img src={project.imageUrl} alt={project.title} className="h-full w-full object-cover" />
+          <div className="mb-4 aspect-video w-full overflow-hidden rounded-sm border border-line bg-surface-elevated/40 flex items-center justify-center p-2">
+            <img src={project.imageUrl} alt={project.title} className="max-h-full max-w-full object-contain" />
           </div>
         )}
 

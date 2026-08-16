@@ -54,7 +54,7 @@ export default async function PortfolioPage({
     console.error("[portfolio-db-error]", err);
   }
 
-  const items = dbProjects;
+  const items = dbProjects.length > 0 ? dbProjects : fallbackItems;
   const filterKeys = ["all", "websites", "webApps", "mobileApps", "ecommerce", "branding", "enterprise"];
   const filters = filterKeys.map((id) => ({ id, label: t(`filters.${id}`) }));
 

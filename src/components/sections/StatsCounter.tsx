@@ -35,8 +35,8 @@ export async function StatsCounter() {
     : fallbackStats.map((s) => ({
         key: s.key,
         label: t ? t(s.key) : s.key,
-        numericValue: s.value !== undefined ? s.value : null,
-        rawValue: s.rawValue || (s.value !== undefined ? String(s.value) : ""),
+        numericValue: s.value,
+        rawValue: String(s.value),
         suffix: s.suffix,
       }));
 

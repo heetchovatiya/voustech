@@ -14,7 +14,7 @@ export async function PortfolioPreview() {
     const projects = await db.project.findMany({
       where: { featured: true },
       orderBy: [{ displayOrder: "asc" }, { createdAt: "desc" }],
-      take: 3,
+      take: 4,
     });
     if (projects.length > 0) {
       dbProjects = projects.map((p) => ({
@@ -29,19 +29,31 @@ export async function PortfolioPreview() {
     console.error("[portfolio-preview-db-error]", err);
   }
 
-  const hasRealProjects = dbProjects.length > 0;
+  // Fallback to original localized portfolio items if DB is empty
+  const rawFallback = t.raw("items") as { title: string; category: string; summary: string }[];
+  const fallbackProjects = Array.isArray(rawFallback)
+    ? rawFallback.slice(0, 4).map((item) => ({
+        title: item.title,
+        categoryLabel: t.has(`filters.${item.category}`) ? t(`filters.${item.category}`) : item.category,
+        summary: item.summary,
+        imageUrl: null,
+        projectUrl: null,
+      }))
+    : [];
 
-  const previewItems = dbProjects.slice(0, 3).map((item) => {
-    const key = `filters.${item.category}`;
-    const categoryLabel = t.has(key) ? t(key) : item.category;
-    return {
-      title: item.title,
-      categoryLabel,
-      summary: item.summary,
-      imageUrl: item.imageUrl,
-      projectUrl: item.projectUrl,
-    };
-  });
+  const previewItems = dbProjects.length > 0
+    ? dbProjects.slice(0, 4).map((item) => {
+        const key = `filters.${item.category}`;
+        const categoryLabel = t.has(key) ? t(key) : item.category;
+        return {
+          title: item.title,
+          categoryLabel,
+          summary: item.summary,
+          imageUrl: item.imageUrl,
+          projectUrl: item.projectUrl,
+        };
+      })
+    : fallbackProjects;
 
   return (
     <section aria-labelledby="portfolio-heading" className="border-b border-line bg-base py-16 lg:py-24">
@@ -53,35 +65,13 @@ export async function PortfolioPreview() {
           body={t("body")}
         />
 
-        {hasRealProjects ? (
-          <>
-            <PortfolioPreviewClient items={previewItems} />
-            <div className="mt-8">
-              <Button href="/portfolio" variant="secondary" showArrow>
-                {t("viewFull")}
-              </Button>
-            </div>
-          </>
-        ) : (
-          <div className="mt-10 rounded-sm border border-tech-blue/30 bg-surface p-8 sm:p-10 shadow-sm">
-            <div className="mx-auto max-w-2xl text-center space-y-4">
-              <span className="inline-block rounded-full bg-tech-blue/10 px-3 py-1 font-mono text-xs font-semibold text-tech-blue uppercase tracking-wider">
-                Case Study Pipeline 2026 💼
-              </span>
-              <h3 className="text-heading-sm font-display font-semibold text-ink">
-                Be Our Next Highlighted Case Study
-              </h3>
-              <p className="text-body-sm text-ink-muted leading-relaxed">
-                We are actively building custom platforms for forward-thinking organizations across Africa and worldwide. Request a proposal to discuss your custom project.
-              </p>
-              <div className="pt-2">
-                <Button href="/contact" variant="primary" showArrow>
-                  Start Your Project
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
+        <PortfolioPreviewClient items={previewItems} />
+
+        <div className="mt-8">
+          <Button href="/portfolio" variant="secondary" showArrow>
+            {t("viewFull")}
+          </Button>
+        </div>
       </Container>
     </section>
   );

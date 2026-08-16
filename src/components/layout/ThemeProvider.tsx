@@ -9,6 +9,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       attribute="data-theme"
       defaultTheme="system"
       enableSystem
+      disableTransitionOnChange
+      enableColorScheme={false}
       storageKey="voustech-theme"
     >
       {children}

@@ -39,11 +39,11 @@ export function PortfolioCard({
       {/* Top Banner / Image */}
       <div title={targetUrl ? `Visit ${title}` : "View Project Details"}>
         {imageUrl ? (
-          <div className="aspect-[4/3] w-full overflow-hidden border-b border-line bg-surface">
+          <div className="aspect-[16/10] w-full overflow-hidden border-b border-line bg-surface-elevated/40 flex items-center justify-center p-2">
             <img
               src={imageUrl}
               alt={title}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-102"
               onError={(e) => {
                 (e.currentTarget as HTMLElement).style.display = "none";
               }}

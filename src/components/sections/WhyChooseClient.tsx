@@ -28,40 +28,33 @@ export function WhyChooseClient({
 
   return (
     <>
-      {/* Mobile view: Horizontal touch scroll cards (No View More needed) */}
+      {/* Mobile view: Device-width horizontal snap cards (logo + title + subtitle, no numbers) */}
       <div className="mt-6 sm:hidden">
         <div className="mb-2 flex items-center justify-between text-xs text-tech-blue font-mono">
           <span>{isFr ? "Glisser pour explorer les 10 raisons" : "Swipe to explore all 10 reasons"}</span>
           <span>→</span>
         </div>
-        <div className="flex gap-3.5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-thin -mx-4 px-4">
-          {items.map((item, i) => {
-            const index = String(i + 1).padStart(2, "0");
-
-            return (
-              <article
-                key={item.title}
-                className="w-[280px] shrink-0 snap-start rounded-sm border border-line bg-surface p-4 flex flex-col justify-between shadow-xs hover:border-tech-blue transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-body font-bold tracking-[0.08em] text-tech-blue">
-                      {index}
-                    </span>
-                    <span className="text-tech-blue">
-                      <Icon name={icons[i % icons.length]} size={20} />
-                    </span>
-                  </div>
-                  <h3 className="text-body font-display font-semibold text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-body-sm leading-relaxed text-ink-muted">
-                    {item.body}
-                  </p>
+        <div className="flex gap-4 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-thin -mx-4 px-4">
+          {items.map((item, i) => (
+            <article
+              key={item.title}
+              className="w-[86vw] max-w-[340px] shrink-0 snap-center rounded-sm border border-line bg-surface p-5 flex flex-col justify-between shadow-xs"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-tech-blue">
+                    <Icon name={icons[i % icons.length]} size={24} />
+                  </span>
                 </div>
-              </article>
-            );
-          })}
+                <h3 className="text-body font-display font-semibold text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-body-sm leading-relaxed text-ink-muted">
+                  {item.body}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
 

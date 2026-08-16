@@ -478,11 +478,11 @@
   },
   "stats": {
     "items": {
-      "ownership": "Code Ownership",
-      "bilingual": "Bilingual Operations",
-      "speed": "Performance Benchmark",
-      "support": "Support Availability",
-      "location": "Central Africa HQ"
+      "projects": "Projects Delivered",
+      "experience": "Years of Experience",
+      "happyClients": "Happy Clients",
+      "countries": "Countries Served",
+      "support": "Support Availability"
     }
   },
   "faq": {

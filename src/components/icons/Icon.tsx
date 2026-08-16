@@ -30,6 +30,10 @@ export type IconName =
   | "terminal"
   | "chevron-down"
   | "chevron-right"
+  | "chevron-left"
+  | "arrow-left"
+  | "arrow-right"
+  | "arrow-up-right"
   | "menu"
   | "close"
   | "sun"
@@ -40,8 +44,6 @@ export type IconName =
   | "facebook"
   | "instagram"
   | "x-twitter"
-  | "arrow-right"
-  | "arrow-up-right"
   | "check"
   | "star"
   | "plus"
@@ -247,6 +249,13 @@ const paths: Record<IconName, ReactNode> = {
   ),
   "chevron-down": <path d="m6 9 6 6 6-6" />,
   "chevron-right": <path d="m9 18 6-6-6-6" />,
+  "chevron-left": <path d="m15 18-6-6 6-6" />,
+  "arrow-left": (
+    <>
+      <path d="M19 12H5" />
+      <path d="m12 19-7-7 7-7" />
+    </>
+  ),
   menu: (
     <>
       <path d="M4 5h16" />

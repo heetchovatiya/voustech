@@ -21,7 +21,7 @@ export function Logo({
   return (
     <Link
       href="/"
-      className="flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80 shrink-0"
+      className="relative z-10 flex items-center opacity-100 transition-opacity duration-150 hover:opacity-80 shrink-0 cursor-pointer"
       aria-label="VousTech home"
     >
       <Image
@@ -30,7 +30,7 @@ export function Logo({
         width={192}
         height={108}
         priority={!lockupOnly}
-        className={lockupOnly ? "h-10 w-auto" : "hidden h-9 w-auto sm:block"}
+        className={lockupOnly ? "h-10 w-auto pointer-events-none" : "hidden h-9 w-auto sm:block pointer-events-none"}
       />
       {!lockupOnly && (
         <Image
@@ -39,7 +39,7 @@ export function Logo({
           width={100}
           height={83}
           priority
-          className="h-8 w-auto sm:hidden"
+          className="h-8 w-auto sm:hidden pointer-events-none"
         />
       )}
     </Link>

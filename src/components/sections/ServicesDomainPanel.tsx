@@ -30,6 +30,39 @@ const domains: DomainMeta[] = grouped.map((g) => ({
   count: g.services.length,
 }));
 
+function MobileServiceRow({
+  slug,
+  icon,
+  title,
+}: {
+  slug: string;
+  icon: IconName;
+  title: string;
+}) {
+  return (
+    <li>
+      <Link
+        href={`/services/${slug}`}
+        className="group flex items-center justify-between gap-3 border-b border-line/70 py-3.5 transition-colors duration-150 last:border-b-0 hover:border-tech-blue/30"
+      >
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="shrink-0 text-tech-blue">
+            <Icon name={icon} size={18} />
+          </span>
+          <span className="truncate text-body-sm font-semibold text-ink transition-colors duration-150 group-hover:text-tech-blue">
+            {title}
+          </span>
+        </div>
+        <Icon
+          name="arrow-right"
+          size={14}
+          className="shrink-0 text-tech-blue transition-transform duration-150 group-hover:translate-x-0.5"
+        />
+      </Link>
+    </li>
+  );
+}
+
 function ServiceRow({
   slug,
   icon,
@@ -173,20 +206,21 @@ export function ServicesDomainPanel() {
               aria-labelledby={`domain-heading-${category.id}`}
               className="scroll-mt-28"
             >
-              <header className="mb-1 flex items-baseline justify-between gap-3">
+              <div className="flex items-center gap-2.5 border-b border-line pb-3">
+                <Icon
+                  name={domainIcons[category.id]}
+                  size={20}
+                  className="text-tech-blue"
+                />
                 <h3
                   id={`domain-heading-${category.id}`}
-                  className="font-display text-heading-sm font-semibold text-ink"
+                  className="font-display text-body-lg font-semibold text-ink"
                 >
                   {categoryLabels[category.labelKey]}
                 </h3>
-                <p className="shrink-0 font-mono text-label uppercase tracking-[0.1em] text-ink-muted">
-                  {t("domainCount", { count: category.services.length })}
-                </p>
-              </header>
-              <div className="mb-4 h-px bg-gradient-to-r from-tech-blue/50 via-line to-transparent" />
+              </div>
 
-              <ul>
+              <ul className="divide-y divide-line/70">
                 {category.services.map((service) => (
                   <ServiceRow
                     key={service.slug}
@@ -202,7 +236,7 @@ export function ServicesDomainPanel() {
         </div>
       </div>
 
-      {/* Mobile / tablet: domain chips + list for the active domain */}
+      {/* Mobile / tablet: domain chips + compact vertical list (logo + main title only, no subtitle) */}
       <div className="min-w-0 lg:hidden">
         <div
           role="group"
@@ -216,10 +250,7 @@ export function ServicesDomainPanel() {
                 key={domain.id}
                 type="button"
                 aria-pressed={current}
-                onClick={() => {
-                  setActiveId(domain.id);
-                  setShowAllMobile(false);
-                }}
+                onClick={() => setActiveId(domain.id)}
                 className={`inline-flex max-w-full items-center gap-2 border px-2.5 py-1.5 text-body-sm font-medium transition-colors duration-150 ${
                   current
                     ? "border-tech-blue bg-tech-blue/10 text-tech-blue"
@@ -243,36 +274,16 @@ export function ServicesDomainPanel() {
               role="region"
               aria-label={categoryLabels[category.labelKey]}
             >
-              <div className="mb-2 flex items-center justify-between text-xs text-tech-blue font-mono">
-                <span>{isFr ? `Glisser pour voir les ${category.services.length} services` : `Swipe to explore all ${category.services.length} services`}</span>
-                <span>→</span>
-              </div>
-              <div className="flex gap-3 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-thin -mx-4 px-4">
+              <ul className="border-t border-line/70">
                 {category.services.map((service) => (
-                  <Link
+                  <MobileServiceRow
                     key={service.slug}
-                    href={`/services/${service.slug}`}
-                    className="w-[280px] shrink-0 snap-start rounded-sm border border-line bg-surface p-4 flex flex-col justify-between hover:border-tech-blue transition-colors group"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="text-tech-blue">
-                          <Icon name={service.icon} size={22} />
-                        </span>
-                        <span className="text-xs text-tech-blue group-hover:translate-x-0.5 transition-transform">
-                          →
-                        </span>
-                      </div>
-                      <h4 className="text-body font-display font-semibold text-ink group-hover:text-tech-blue transition-colors">
-                        {t(`items.${service.slug}.title`)}
-                      </h4>
-                      <p className="mt-1.5 text-body-sm leading-relaxed text-ink-muted">
-                        {t(`items.${service.slug}.hook`)}
-                      </p>
-                    </div>
-                  </Link>
+                    slug={service.slug}
+                    icon={service.icon}
+                    title={t(`items.${service.slug}.title`)}
+                  />
                 ))}
-              </div>
+              </ul>
             </div>
           );
         })}

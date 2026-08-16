@@ -4,6 +4,7 @@ import { z } from "zod";
 import { siteConfig } from "@/lib/site.config";
 import { db } from "@/lib/db";
 import { translateFrenchToEnglish } from "@/lib/translate";
+import { sanitizeObject } from "@/lib/sanitize";
 
 const contactSchema = z.object({
   fullName: z.string().trim().min(1).max(200),
@@ -40,7 +41,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const data = parsed.data;
+  const rawData = parsed.data;
+  const data = sanitizeObject(rawData);
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {

@@ -19,8 +19,14 @@ const COOKIE_NAME = "voustech_admin_session";
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Immediately pass through static verification files (e.g. Google Search Console & Bing Webmaster)
-  if (pathname.endsWith(".html") || pathname.includes("google") || pathname.includes("BingSiteAuth.xml")) {
+  // Immediately pass through static verification files (e.g. Google Search Console, Bing Webmaster & IndexNow)
+  if (
+    pathname.endsWith(".html") ||
+    pathname.endsWith(".txt") ||
+    pathname.includes("google") ||
+    pathname.includes("BingSiteAuth.xml") ||
+    pathname.includes("8e1df94828ed4cc09c7352f9541380ce")
+  ) {
     return NextResponse.next();
   }
 
@@ -172,6 +178,6 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|manifest.webmanifest|llms.txt|icon.png|apple-icon.png|brand/|google*.html|BingSiteAuth.xml).*)",
+    "/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|manifest.webmanifest|llms.txt|icon.png|apple-icon.png|brand/|google*.html|BingSiteAuth.xml|8e1df94828ed4cc09c7352f9541380ce.txt).*)",
   ],
 };

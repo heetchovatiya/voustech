@@ -235,8 +235,6 @@ export function ServicesDomainPanel() {
 
         {grouped.map((category) => {
           if (category.id !== activeId) return null;
-          const displayServices = showAllMobile ? category.services : category.services.slice(0, 3);
-          const hasMore = category.services.length > 3;
 
           return (
             <div
@@ -245,28 +243,36 @@ export function ServicesDomainPanel() {
               role="region"
               aria-label={categoryLabels[category.labelKey]}
             >
-              <ul>
-                {displayServices.map((service) => (
-                  <ServiceRow
+              <div className="mb-2 flex items-center justify-between text-xs text-tech-blue font-mono">
+                <span>{isFr ? `Glisser pour voir les ${category.services.length} services` : `Swipe to explore all ${category.services.length} services`}</span>
+                <span>→</span>
+              </div>
+              <div className="flex gap-3 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-thin -mx-4 px-4">
+                {category.services.map((service) => (
+                  <Link
                     key={service.slug}
-                    slug={service.slug}
-                    icon={service.icon}
-                    title={t(`items.${service.slug}.title`)}
-                    hook={t(`items.${service.slug}.hook`)}
-                  />
+                    href={`/services/${service.slug}`}
+                    className="w-[280px] shrink-0 snap-start rounded-sm border border-line bg-surface p-4 flex flex-col justify-between hover:border-tech-blue transition-colors group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="text-tech-blue">
+                          <Icon name={service.icon} size={22} />
+                        </span>
+                        <span className="text-xs text-tech-blue group-hover:translate-x-0.5 transition-transform">
+                          →
+                        </span>
+                      </div>
+                      <h4 className="text-body font-display font-semibold text-ink group-hover:text-tech-blue transition-colors">
+                        {t(`items.${service.slug}.title`)}
+                      </h4>
+                      <p className="mt-1.5 text-body-sm leading-relaxed text-ink-muted">
+                        {t(`items.${service.slug}.hook`)}
+                      </p>
+                    </div>
+                  </Link>
                 ))}
-              </ul>
-
-              {hasMore && !showAllMobile && (
-                <button
-                  type="button"
-                  onClick={() => setShowAllMobile(true)}
-                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-sm border border-line bg-surface-elevated py-2.5 text-body-sm font-semibold text-tech-blue hover:border-tech-blue"
-                >
-                  <span>{isFr ? `Afficher les ${category.services.length} services` : `Show All ${category.services.length} Services`}</span>
-                  <span>↓</span>
-                </button>
-              )}
+              </div>
             </div>
           );
         })}

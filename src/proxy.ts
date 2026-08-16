@@ -67,7 +67,19 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 3. Handle next-intl routing for public pages
+  // 3. Handle root / redirection preserving user preference cookie or defaulting to French
+  if (pathname === "/") {
+    const savedLocale = request.cookies.get("NEXT_LOCALE")?.value;
+    const targetLocale = savedLocale === "en" ? "en" : "fr";
+    const url = new URL(`/${targetLocale}`, request.url);
+    const res = NextResponse.redirect(url);
+    if (!savedLocale) {
+      res.cookies.set("NEXT_LOCALE", "fr", { path: "/", maxAge: 31536000, sameSite: "lax" });
+    }
+    return res;
+  }
+
+  // 4. Handle next-intl routing for public pages
   return handleIntl(request);
 }
 

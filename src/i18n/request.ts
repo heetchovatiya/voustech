@@ -38,7 +38,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     ? requested
     : routing.defaultLocale;
 
-  const localized = catalogs[locale as keyof typeof catalogs] ?? en;
+  const localized = catalogs[locale as keyof typeof catalogs] ?? fr;
   const messages = locale === "en" ? en : mergeMessages(en as MessageTree, localized as MessageTree);
 
   return {

@@ -6,7 +6,8 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/brand/logo-mark.png`,
+    logo: `${siteConfig.url}/icon.png`,
+    image: `${siteConfig.url}/brand/logo-lockup-light.png`,
     description:
       "VousTech designs and builds websites, mobile apps and custom digital systems for businesses across Africa and worldwide.",
     email: siteConfig.contactInboxEmail,
@@ -34,20 +35,6 @@ export function localBusinessJsonLd() {
       "@type": "PostalAddress",
       addressCountry: "CD",
     },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:00",
-        closes: "18:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday"],
-        opens: "09:00",
-        closes: "13:00",
-      },
-    ],
   };
 }
 

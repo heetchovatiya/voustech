@@ -38,19 +38,6 @@ export async function ContactSection({ isStandalonePage = false }: { isStandalon
           </HeadingTag>
           <p className="mt-4 text-body text-ink-muted">{t("body")}</p>
 
-          <div className="mt-8">
-            <h3 className="font-mono text-label uppercase tracking-[0.1em] text-ink-muted">
-              {t("businessHours.title")}
-            </h3>
-            <ul className="mt-3 flex flex-col gap-1.5 text-body-sm text-ink">
-              <li className="flex items-center gap-2">
-                <Icon name="clock" size={15} className="shrink-0 text-tech-blue" />
-                {t("businessHours.weekdays")}
-              </li>
-              <li className="pl-[23px] text-ink-muted">{t("businessHours.saturday")}</li>
-              <li className="pl-[23px] text-ink-muted">{t("businessHours.sunday")}</li>
-            </ul>
-          </div>
 
           <div className="mt-8">
             <h3 className="font-mono text-label uppercase tracking-[0.1em] text-ink-muted">

@@ -47,6 +47,12 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
   function selectLocale(next: AppLocale) {
     setOpen(false);
     if (next === locale) return;
+    try {
+      localStorage.setItem("NEXT_LOCALE", next);
+      document.cookie = `NEXT_LOCALE=${next};path=/;max-age=31536000;SameSite=Lax`;
+    } catch {
+      // ignore
+    }
     router.replace(pathname, { locale: next });
   }
 

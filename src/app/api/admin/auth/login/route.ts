@@ -55,6 +55,10 @@ export async function POST(request: Request) {
     const otpCode = generateOtp();
     const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes expiration
 
+    console.log(`\n==================================================`);
+    console.log(`🔑 [ADMIN 2FA OTP] Code for ${admin.email} (${admin.username}): ${otpCode}`);
+    console.log(`==================================================\n`);
+
     await db.adminUser.update({
       where: { id: admin.id },
       data: {

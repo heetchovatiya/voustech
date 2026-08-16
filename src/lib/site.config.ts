@@ -13,9 +13,8 @@ export const siteConfig = {
   // TODO: replace with real profile URLs.
   social: {
     linkedin: "https://linkedin.com/company/voustech",
-    facebook: "https://facebook.com/voustech",
-    instagram: "https://instagram.com/voustech",
-    x: "https://x.com/voustech",
+    facebook: "https://facebook.com/VousTech",
+    instagram: "https://instagram.com/vous.tech",
   },
 
   // Inbox that receives contact-form leads (override with CONTACT_INBOX_EMAIL).

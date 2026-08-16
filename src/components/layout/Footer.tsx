@@ -10,7 +10,6 @@ const socialLinks: { name: string; href: string; icon: IconName }[] = [
   { name: "LinkedIn", href: siteConfig.social.linkedin, icon: "linkedin" },
   { name: "Facebook", href: siteConfig.social.facebook, icon: "facebook" },
   { name: "Instagram", href: siteConfig.social.instagram, icon: "instagram" },
-  { name: "X (Twitter)", href: siteConfig.social.x, icon: "x-twitter" },
   {
     name: "WhatsApp Business",
     href: `https://wa.me/${siteConfig.whatsappNumber}`,

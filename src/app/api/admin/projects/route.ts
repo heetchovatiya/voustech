@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -46,6 +47,8 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, project });
   } catch (err) {
     console.error("[projects-create-error]", err);
@@ -77,13 +80,15 @@ export async function PUT(request: Request) {
         category: category ? String(category).trim() : undefined,
         summary: summary ? String(summary).trim() : undefined,
         description: description ? String(description).trim() : undefined,
-        imageUrl: imageUrl !== undefined ? String(imageUrl).trim() : undefined,
+        imageUrl: imageUrl !== undefined ? (imageUrl ? String(imageUrl).trim() : null) : undefined,
         projectUrl: projectUrl !== undefined ? (projectUrl ? String(projectUrl).trim() : null) : undefined,
         displayOrder: displayOrder !== undefined ? Number(displayOrder) : undefined,
         featured: featured !== undefined ? Boolean(featured) : undefined,
         tags: tagsString,
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, project });
   } catch (err) {
@@ -107,6 +112,8 @@ export async function DELETE(request: Request) {
     }
 
     await db.project.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[projects-delete-error]", err);

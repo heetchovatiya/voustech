@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
     const { question, answer, category, displayOrder, hidden } = body;
 
     if (!question || !answer) {
-      return NextResponse.json({ ok: false, error: "Question and answer are required" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: "Question and Answer required" }, { status: 400 });
     }
 
     const faq = await db.faq.create({
@@ -33,10 +34,12 @@ export async function POST(request: Request) {
         question: String(question).trim(),
         answer: String(answer).trim(),
         category: category ? String(category).trim() : "general",
-        displayOrder: Number(displayOrder) || 0,
-        hidden: Boolean(hidden ?? false),
+        displayOrder: displayOrder !== undefined ? Number(displayOrder) : 0,
+        hidden: Boolean(hidden),
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, faq });
   } catch (err) {
@@ -56,19 +59,21 @@ export async function PUT(request: Request) {
     const { id, question, answer, category, displayOrder, hidden } = body;
 
     if (!id) {
-      return NextResponse.json({ ok: false, error: "FAQ ID required" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: "ID required" }, { status: 400 });
     }
 
     const faq = await db.faq.update({
       where: { id },
       data: {
-        question: question !== undefined ? String(question).trim() : undefined,
-        answer: answer !== undefined ? String(answer).trim() : undefined,
-        category: category !== undefined ? String(category).trim() : undefined,
+        question: question ? String(question).trim() : undefined,
+        answer: answer ? String(answer).trim() : undefined,
+        category: category !== undefined ? (category ? String(category).trim() : null) : undefined,
         displayOrder: displayOrder !== undefined ? Number(displayOrder) : undefined,
         hidden: hidden !== undefined ? Boolean(hidden) : undefined,
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, faq });
   } catch (err) {
@@ -88,10 +93,12 @@ export async function DELETE(request: Request) {
     const id = searchParams.get("id");
 
     if (!id) {
-      return NextResponse.json({ ok: false, error: "FAQ ID required" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: "ID parameter required" }, { status: 400 });
     }
 
     await db.faq.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[faqs-delete-error]", err);

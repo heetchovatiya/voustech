@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -43,6 +44,8 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, service });
   } catch (err) {
     console.error("[services-create-error]", err);
@@ -75,9 +78,11 @@ export async function PUT(request: Request) {
         summary: summary ? String(summary).trim() : undefined,
         description: description ? String(description).trim() : undefined,
         deliverables: deliverablesString,
-        iconName: iconName !== undefined ? String(iconName).trim() : undefined,
+        iconName: iconName !== undefined ? (iconName ? String(iconName).trim() : null) : undefined,
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, service });
   } catch (err) {
@@ -101,6 +106,8 @@ export async function DELETE(request: Request) {
     }
 
     await db.service.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[services-delete-error]", err);

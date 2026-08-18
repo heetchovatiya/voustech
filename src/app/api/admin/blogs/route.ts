@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -42,6 +43,8 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, blog });
   } catch (err) {
     console.error("[blogs-create-error]", err);
@@ -76,6 +79,8 @@ export async function PUT(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, blog });
   } catch (err) {
     console.error("[blogs-update-error]", err);
@@ -98,6 +103,8 @@ export async function DELETE(request: Request) {
     }
 
     await db.blogPost.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[blogs-delete-error]", err);

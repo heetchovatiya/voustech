@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -33,11 +34,13 @@ export async function POST(request: Request) {
         clientName: String(clientName).trim(),
         clientRole: String(clientRole).trim(),
         company: String(company).trim(),
-        avatarUrl: avatarUrl ? String(avatarUrl).trim() : null,
+        avatarUrl: avatarUrl && String(avatarUrl).trim() !== "" ? String(avatarUrl).trim() : null,
         content: String(content).trim(),
         rating: Number(rating) || 5,
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, testimonial });
   } catch (err) {
@@ -63,14 +66,16 @@ export async function PUT(request: Request) {
     const testimonial = await db.testimonial.update({
       where: { id },
       data: {
-        clientName: clientName ? String(clientName).trim() : undefined,
-        clientRole: clientRole ? String(clientRole).trim() : undefined,
-        company: company ? String(company).trim() : undefined,
-        avatarUrl: avatarUrl !== undefined ? (avatarUrl ? String(avatarUrl).trim() : null) : undefined,
-        content: content ? String(content).trim() : undefined,
+        clientName: clientName !== undefined ? String(clientName).trim() : undefined,
+        clientRole: clientRole !== undefined ? String(clientRole).trim() : undefined,
+        company: company !== undefined ? String(company).trim() : undefined,
+        avatarUrl: avatarUrl !== undefined ? (avatarUrl && String(avatarUrl).trim() !== "" ? String(avatarUrl).trim() : null) : undefined,
+        content: content !== undefined ? String(content).trim() : undefined,
         rating: rating !== undefined ? Number(rating) : undefined,
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, testimonial });
   } catch (err) {
@@ -94,6 +99,8 @@ export async function DELETE(request: Request) {
     }
 
     await db.testimonial.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[testimonials-delete-error]", err);

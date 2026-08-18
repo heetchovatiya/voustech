@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -37,6 +38,8 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, metric });
   } catch (err) {
     console.error("[stats-create-error]", err);
@@ -68,6 +71,8 @@ export async function PUT(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, metric });
   } catch (err) {
     console.error("[stats-update-error]", err);
@@ -90,6 +95,8 @@ export async function DELETE(request: Request) {
     }
 
     await db.companyMetric.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[stats-delete-error]", err);

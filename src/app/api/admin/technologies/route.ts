@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { getAdminSession } from "@/lib/auth";
 
@@ -42,6 +43,8 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true, technology });
   } catch (err) {
     console.error("[technologies-create-error]", err);
@@ -69,12 +72,14 @@ export async function PUT(request: Request) {
         name: name ? String(name).trim() : undefined,
         slug: slug ? String(slug).trim() : undefined,
         category: category ? String(category).trim() : undefined,
-        iconName: iconName !== undefined ? String(iconName).trim() : undefined,
+        iconName: iconName !== undefined ? (iconName ? String(iconName).trim() : null) : undefined,
         description: description ? String(description).trim() : undefined,
         displayOrder: displayOrder !== undefined ? Number(displayOrder) : undefined,
         featured: featured !== undefined ? Boolean(featured) : undefined,
       },
     });
+
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ ok: true, technology });
   } catch (err) {
@@ -98,6 +103,8 @@ export async function DELETE(request: Request) {
     }
 
     await db.technology.delete({ where: { id } });
+    revalidatePath("/", "layout");
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[technologies-delete-error]", err);
